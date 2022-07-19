@@ -11,6 +11,7 @@ class ConversationEntity with _$ConversationEntity {
     required int unread,
     required List<ProfileEntity> members,
     required int membersCount,
+    PictureEntity? picture,
     required ProfileEntity owner,
     EmbedMessageEntity? message,
     required String timestamp,

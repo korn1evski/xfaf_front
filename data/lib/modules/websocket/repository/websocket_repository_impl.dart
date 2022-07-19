@@ -25,4 +25,9 @@ class WebSocketRepositoryImpl extends WebSocketRepository{
     return webSocketDataSource.getMessagesController();
   }
 
+  @override
+  void closeWebSocket() {
+    webSocketDataSource.closeWebSocket();
+  }
+
 }

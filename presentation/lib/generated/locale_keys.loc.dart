@@ -155,5 +155,16 @@ abstract class  LocaleKeys {
   static const companies = 'companies';
   static const allCompanies = 'allCompanies';
   static const categories = 'categories';
+  static const newDirectMessage = 'newDirectMessage';
+  static const newGroup = 'newGroup';
+  static const signOut = 'signOut';
+  static const addMembers = 'addMembers';
+  static const noUsersFound = 'noUsersFound';
+  static const sendAMessage = 'sendAMessage';
+  static const groupSettings = 'groupSettings';
+  static const letsStartChatting = 'letsStartChatting';
+  static const chat = 'chat';
+  static const theBeginningOfConversation = 'theBeginningOfConversation';
+  static const areYouSureDeletingConversation = 'areYouSureDeletingConversation';
 
 }

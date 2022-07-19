@@ -37,7 +37,7 @@ class RoomMapper {
   EmbedMessageEntity embedMessageEntityFromDto(EmbedMessageApiDto messageApiDto) {
     return EmbedMessageEntity(
         id: messageApiDto.id,
-        attachments: attachmentListToEntity(messageApiDto.attachments),
+        attachments: messageApiDto.attachments,
         content: messageApiDto.content,
         conversation: messageApiDto.conversation,
         isPoll: messageApiDto.isPoll,

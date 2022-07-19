@@ -19,7 +19,7 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
   Future<Either<Failure, bool>> login(LoginEntity loginEntity) async{
     try{
       final response = await loginDataSource.login(loginEntity);
-      manageTokensDataSource.saveTokens(response.access, response.refresh);
+      await manageTokensDataSource.saveTokens(response.access, response.refresh);
       apiClient.interceptors.add(interceptor);
       return Right(true);
     } catch (e){

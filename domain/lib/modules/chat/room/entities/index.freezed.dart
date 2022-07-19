@@ -417,35 +417,35 @@ abstract class _AttachmentEntity implements AttachmentEntity {
       required final String message}) = _$_AttachmentEntity;
 
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String get filename => throw _privateConstructorUsedError;
+  String get filename;
   @override
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
-  String get size => throw _privateConstructorUsedError;
+  String get size;
   @override
-  int get width => throw _privateConstructorUsedError;
+  int get width;
   @override
-  int get height => throw _privateConstructorUsedError;
+  int get height;
   @override
-  int get type => throw _privateConstructorUsedError;
+  int get type;
   @override
-  String get extension => throw _privateConstructorUsedError;
+  String get extension;
   @override
-  String get url => throw _privateConstructorUsedError;
+  String get url;
   @override
-  String get mimetype => throw _privateConstructorUsedError;
+  String get mimetype;
   @override
-  String get timestamp => throw _privateConstructorUsedError;
+  String get timestamp;
   @override
-  String get editedTimestamp => throw _privateConstructorUsedError;
+  String get editedTimestamp;
   @override
-  ProfileEntity get owner => throw _privateConstructorUsedError;
+  ProfileEntity get owner;
   @override
-  ConversationEntity get conversation => throw _privateConstructorUsedError;
+  ConversationEntity get conversation;
   @override
-  String get message => throw _privateConstructorUsedError;
+  String get message;
   @override
   @JsonKey(ignore: true)
   _$$_AttachmentEntityCopyWith<_$_AttachmentEntity> get copyWith =>
@@ -456,7 +456,7 @@ abstract class _AttachmentEntity implements AttachmentEntity {
 mixin _$EmbedMessageEntity {
   @JsonKey(name: '_id')
   String get id => throw _privateConstructorUsedError;
-  List<AttachmentEntity> get attachments => throw _privateConstructorUsedError;
+  List<String> get attachments => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
   String get conversation => throw _privateConstructorUsedError;
   @JsonKey(name: 'is_poll')
@@ -483,7 +483,7 @@ abstract class $EmbedMessageEntityCopyWith<$Res> {
       _$EmbedMessageEntityCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: '_id') String id,
-      List<AttachmentEntity> attachments,
+      List<String> attachments,
       String content,
       String conversation,
       @JsonKey(name: 'is_poll') bool isPoll,
@@ -526,7 +526,7 @@ class _$EmbedMessageEntityCopyWithImpl<$Res>
       attachments: attachments == freezed
           ? _value.attachments
           : attachments // ignore: cast_nullable_to_non_nullable
-              as List<AttachmentEntity>,
+              as List<String>,
       content: content == freezed
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -579,7 +579,7 @@ abstract class _$$_EmbedMessageEntityCopyWith<$Res>
   @override
   $Res call(
       {@JsonKey(name: '_id') String id,
-      List<AttachmentEntity> attachments,
+      List<String> attachments,
       String content,
       String conversation,
       @JsonKey(name: 'is_poll') bool isPoll,
@@ -625,7 +625,7 @@ class __$$_EmbedMessageEntityCopyWithImpl<$Res>
       attachments: attachments == freezed
           ? _value._attachments
           : attachments // ignore: cast_nullable_to_non_nullable
-              as List<AttachmentEntity>,
+              as List<String>,
       content: content == freezed
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -667,7 +667,7 @@ class __$$_EmbedMessageEntityCopyWithImpl<$Res>
 class _$_EmbedMessageEntity implements _EmbedMessageEntity {
   _$_EmbedMessageEntity(
       {@JsonKey(name: '_id') required this.id,
-      required final List<AttachmentEntity> attachments,
+      required final List<String> attachments,
       required this.content,
       required this.conversation,
       @JsonKey(name: 'is_poll') required this.isPoll,
@@ -681,9 +681,9 @@ class _$_EmbedMessageEntity implements _EmbedMessageEntity {
   @override
   @JsonKey(name: '_id')
   final String id;
-  final List<AttachmentEntity> _attachments;
+  final List<String> _attachments;
   @override
-  List<AttachmentEntity> get attachments {
+  List<String> get attachments {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_attachments);
   }
@@ -760,7 +760,7 @@ abstract class _EmbedMessageEntity implements EmbedMessageEntity {
   factory _EmbedMessageEntity(
       {@JsonKey(name: '_id')
           required final String id,
-      required final List<AttachmentEntity> attachments,
+      required final List<String> attachments,
       required final String content,
       required final String conversation,
       @JsonKey(name: 'is_poll')
@@ -774,28 +774,28 @@ abstract class _EmbedMessageEntity implements EmbedMessageEntity {
 
   @override
   @JsonKey(name: '_id')
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  List<AttachmentEntity> get attachments => throw _privateConstructorUsedError;
+  List<String> get attachments;
   @override
-  String get content => throw _privateConstructorUsedError;
+  String get content;
   @override
-  String get conversation => throw _privateConstructorUsedError;
+  String get conversation;
   @override
   @JsonKey(name: 'is_poll')
-  bool get isPoll => throw _privateConstructorUsedError;
+  bool get isPoll;
   @override // @JsonKey(name: 'is_pool') required bool isPool,
 // required String organization,
-  String get timestamp => throw _privateConstructorUsedError;
+  String get timestamp;
   @override
-  ProfileEntity get owner => throw _privateConstructorUsedError;
+  ProfileEntity get owner;
   @override
-  String get tag => throw _privateConstructorUsedError;
+  String get tag;
   @override
-  int get type => throw _privateConstructorUsedError;
+  int get type;
   @override // @JsonKey(name: '__v') required int v,
   @JsonKey(name: 'edited_timestamp')
-  String get editedTimestamp => throw _privateConstructorUsedError;
+  String get editedTimestamp;
   @override
   @JsonKey(ignore: true)
   _$$_EmbedMessageEntityCopyWith<_$_EmbedMessageEntity> get copyWith =>
@@ -1233,36 +1233,35 @@ abstract class _MessageEntity implements MessageEntity {
 
   @override
   @JsonKey(name: '_id')
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  bool get after => throw _privateConstructorUsedError;
+  bool get after;
   @override
-  List<AttachmentEntity> get attachments => throw _privateConstructorUsedError;
+  List<AttachmentEntity> get attachments;
   @override
-  bool get before => throw _privateConstructorUsedError;
+  bool get before;
   @override
-  String get timestamp => throw _privateConstructorUsedError;
+  String get timestamp;
   @override
-  String get content => throw _privateConstructorUsedError;
+  String get content;
   @override
-  ConversationInsideMessageEntity get conversation =>
-      throw _privateConstructorUsedError;
+  ConversationInsideMessageEntity get conversation;
   @override
-  bool get current => throw _privateConstructorUsedError;
+  bool get current;
   @override
-  List<EmbedEntity> get embeds => throw _privateConstructorUsedError;
+  List<EmbedEntity> get embeds;
   @override
-  bool get isPoll => throw _privateConstructorUsedError;
+  bool get isPoll;
   @override
-  List<ProfileEntity> get members => throw _privateConstructorUsedError;
+  List<ProfileEntity> get members;
   @override
-  ProfileEntity? get owner => throw _privateConstructorUsedError;
+  ProfileEntity? get owner;
   @override
-  String get tag => throw _privateConstructorUsedError;
+  String get tag;
   @override
-  int get type => throw _privateConstructorUsedError;
+  int get type;
   @override
-  String get editedTimestamp => throw _privateConstructorUsedError;
+  String get editedTimestamp;
   @override
   @JsonKey(ignore: true)
   _$$_MessageEntityCopyWith<_$_MessageEntity> get copyWith =>
@@ -1563,23 +1562,23 @@ abstract class _EmbedEntity implements EmbedEntity {
       required final String editedTimestamp}) = _$_EmbedEntity;
 
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  List<AttachmentEntity> get attachments => throw _privateConstructorUsedError;
+  List<AttachmentEntity> get attachments;
   @override
-  String get description => throw _privateConstructorUsedError;
+  String get description;
   @override
-  EmbedMessageEntity get message => throw _privateConstructorUsedError;
+  EmbedMessageEntity get message;
   @override
-  String get timestamp => throw _privateConstructorUsedError;
+  String get timestamp;
   @override
-  ProfileEntity get owner => throw _privateConstructorUsedError;
+  ProfileEntity get owner;
   @override
-  String get tag => throw _privateConstructorUsedError;
+  String get tag;
   @override
-  int get type => throw _privateConstructorUsedError;
+  int get type;
   @override
-  String get editedTimestamp => throw _privateConstructorUsedError;
+  String get editedTimestamp;
   @override
   @JsonKey(ignore: true)
   _$$_EmbedEntityCopyWith<_$_EmbedEntity> get copyWith =>

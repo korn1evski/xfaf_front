@@ -15,3 +15,4 @@ part 'api/conversation_api_dto.dart';
 part 'api/conversation_event_api_dto.dart';
 part 'api/conversation_inside_message.dart';
 part 'api/conversation_websocket_api_dto.dart';
+part 'api/picture_api_dto.dart';

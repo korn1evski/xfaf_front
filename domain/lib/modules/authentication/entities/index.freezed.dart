@@ -142,9 +142,9 @@ abstract class _AuthJWTResponseEntity implements AuthJWTResponseEntity {
       required final String refresh}) = _$_AuthJWTResponseEntity;
 
   @override
-  String get access => throw _privateConstructorUsedError;
+  String get access;
   @override
-  String get refresh => throw _privateConstructorUsedError;
+  String get refresh;
   @override
   @JsonKey(ignore: true)
   _$$_AuthJWTResponseEntityCopyWith<_$_AuthJWTResponseEntity> get copyWith =>
@@ -275,9 +275,9 @@ abstract class _LoginEntity implements LoginEntity {
       required final String password}) = _$_LoginEntity;
 
   @override
-  String get username => throw _privateConstructorUsedError;
+  String get username;
   @override
-  String get password => throw _privateConstructorUsedError;
+  String get password;
   @override
   @JsonKey(ignore: true)
   _$$_LoginEntityCopyWith<_$_LoginEntity> get copyWith =>
@@ -394,7 +394,7 @@ abstract class _AccessTokenEntity implements AccessTokenEntity {
       _$_AccessTokenEntity;
 
   @override
-  String get access => throw _privateConstructorUsedError;
+  String get access;
   @override
   @JsonKey(ignore: true)
   _$$_AccessTokenEntityCopyWith<_$_AccessTokenEntity> get copyWith =>
@@ -511,7 +511,7 @@ abstract class _RefreshTokenEntity implements RefreshTokenEntity {
       _$_RefreshTokenEntity;
 
   @override
-  String get refresh => throw _privateConstructorUsedError;
+  String get refresh;
   @override
   @JsonKey(ignore: true)
   _$$_RefreshTokenEntityCopyWith<_$_RefreshTokenEntity> get copyWith =>

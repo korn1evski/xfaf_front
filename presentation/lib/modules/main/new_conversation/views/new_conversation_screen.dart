@@ -1,6 +1,8 @@
+import 'package:chat/constants/app_constants.dart';
+import 'package:chat/generated/locale_keys.loc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' hide Trans;
 import 'package:chat/common/widgets/base/base_page.dart';
 import 'package:chat/common/widgets/base/base_page_state.dart';
 import 'package:chat/common/widgets/common_text.dart';
@@ -9,7 +11,6 @@ import 'package:chat/constants/resources/colors.dart';
 import 'package:chat/modules/main/new_conversation/controllers/new_conversation_controller.dart';
 import 'package:chat/modules/main/new_conversation/widgets/user_tile.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:domain/di/domain_injection_container.dart' as domain_injection;
 import '../../../../common/widgets/simple_input.dart';
 
 class NewConversationScreen extends StatefulWidget {
@@ -31,7 +32,7 @@ class _NewConversationScreenState extends BasePageState<NewConversationScreen> {
   }
 
   @override
-  dispose(){
+  dispose() {
     super.dispose();
   }
 
@@ -56,12 +57,13 @@ class _NewConversationScreenState extends BasePageState<NewConversationScreen> {
                       onChange: (value) {
                         newConversationController.inputValue.value = value!;
                       })),
-              newConversationController.usersList.isEmpty && !newConversationController.isLoading.value
+              newConversationController.usersList.isEmpty &&
+                      !newConversationController.isLoading.value
                   ? Padding(
                       padding: EdgeInsets.only(top: 200.h),
                       child: Center(
                         child: CommonText(
-                          text: 'No users found',
+                          text: LocaleKeys.noUsersFound.tr().capitalizeFirst!,
                           size: 14,
                           color: AppColors.mainTextColor,
                         ),
@@ -71,7 +73,8 @@ class _NewConversationScreenState extends BasePageState<NewConversationScreen> {
                       ? const SizedBox()
                       : Expanded(
                           child: SmartRefresher(
-                            controller: newConversationController.refreshController,
+                            controller:
+                                newConversationController.refreshController,
                             enablePullDown: false,
                             enablePullUp: true,
                             onLoading: () async {
@@ -81,13 +84,17 @@ class _NewConversationScreenState extends BasePageState<NewConversationScreen> {
                               child: ListView.builder(
                                 physics: const NeverScrollableScrollPhysics(),
                                 shrinkWrap: true,
-                                itemCount: newConversationController.usersList.length,
+                                itemCount:
+                                    newConversationController.usersList.length,
                                 itemBuilder: (_, index) {
                                   return UserTile(
-                                    profileEntity: newConversationController.usersList[index],
+                                    profileEntity: newConversationController
+                                        .usersList[index],
                                     onTap: () async {
                                       await newConversationController
-                                          .startPrivateConversation(newConversationController.usersList[index]);
+                                          .startPrivateConversation(
+                                              newConversationController
+                                                  .usersList[index]);
                                     },
                                   );
                                 },

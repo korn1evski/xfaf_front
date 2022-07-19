@@ -191,13 +191,13 @@ abstract class _UserApiDto implements UserApiDto {
       _$_UserApiDto.fromJson;
 
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String get firstName => throw _privateConstructorUsedError;
+  String get firstName;
   @override
-  String get lastName => throw _privateConstructorUsedError;
+  String get lastName;
   @override
-  String get picture => throw _privateConstructorUsedError;
+  String get picture;
   @override
   @JsonKey(ignore: true)
   _$$_UserApiDtoCopyWith<_$_UserApiDto> get copyWith =>
@@ -335,7 +335,7 @@ abstract class _UserResponseApiDto implements UserResponseApiDto {
       _$_UserResponseApiDto.fromJson;
 
   @override
-  List<UserApiDto> get data => throw _privateConstructorUsedError;
+  List<UserApiDto> get data;
   @override
   @JsonKey(ignore: true)
   _$$_UserResponseApiDtoCopyWith<_$_UserResponseApiDto> get copyWith =>

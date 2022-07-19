@@ -18,6 +18,7 @@ class GetConversationsUseCase extends UseCase<List<ConversationEntity>, GetConve
 }
 
 class GetConversationsParams {
-  GetConversationsParams({required this.page});
+  GetConversationsParams({required this.page, this.limit = 30});
   final int page;
+  final int limit;
 }

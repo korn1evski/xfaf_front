@@ -370,32 +370,32 @@ abstract class _ProfileApiDto implements ProfileApiDto {
 
   @override
   @JsonKey(name: '_id')
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String get email => throw _privateConstructorUsedError;
+  String get email;
   @override
   @JsonKey(name: 'first_name')
-  String get firstName => throw _privateConstructorUsedError;
+  String get firstName;
   @override
   @JsonKey(name: 'last_name')
-  String get lastName => throw _privateConstructorUsedError;
+  String get lastName;
   @override
-  String? get phone => throw _privateConstructorUsedError;
+  String? get phone;
   @override
-  String? get photo => throw _privateConstructorUsedError;
+  String? get photo;
   @override
-  String get sso => throw _privateConstructorUsedError;
+  String get sso;
   @override
-  List<String> get keys => throw _privateConstructorUsedError;
+  List<String> get keys;
   @override
-  Notifications? get notifications => throw _privateConstructorUsedError;
+  Notifications? get notifications;
   @override
-  String? get timestamp => throw _privateConstructorUsedError;
+  String? get timestamp;
   @override
   @JsonKey(name: 'edited_timestamp')
-  String? get editedTimestamp => throw _privateConstructorUsedError;
+  String? get editedTimestamp;
   @override
-  Settings? get settings => throw _privateConstructorUsedError;
+  Settings? get settings;
   @override
   @JsonKey(ignore: true)
   _$$_ProfileApiDtoCopyWith<_$_ProfileApiDto> get copyWith =>

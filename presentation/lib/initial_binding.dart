@@ -19,6 +19,5 @@ class InitialBinding extends Bindings {
         getConversationsControllerUseCase: domain_injection.sl.call(),
       getMessagesControllerUseCase: domain_injection.sl.call()
     ));
-    Get.put(AccountInfoController(getCurrentUserSessionUseCase: domain_injection.sl.call()));
   }
 }

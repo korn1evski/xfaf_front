@@ -50,7 +50,7 @@ _$_EmbedMessageApiDto _$$_EmbedMessageApiDtoFromJson(
     _$_EmbedMessageApiDto(
       id: json['_id'] as String,
       attachments: (json['attachments'] as List<dynamic>)
-          .map((e) => AttachmentApiDto.fromJson(e as Map<String, dynamic>))
+          .map((e) => e as String)
           .toList(),
       content: json['content'] as String,
       conversation: json['conversation'] as String,

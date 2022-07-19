@@ -15,6 +15,7 @@ abstract class WebSocketDataSource {
   void startWebSocket();
   StreamController<ConversationEventEntity> getConversationsController();
   StreamController<MessageEntity> getMessagesController();
+  void closeWebSocket();
 }
 
 class WebSocketDataSourceImpl implements WebSocketDataSource {
@@ -22,14 +23,16 @@ class WebSocketDataSourceImpl implements WebSocketDataSource {
 
   WebSocketDataSourceImpl({required this.manageTokensDataSource});
 
-  final StreamController<ConversationEventEntity> conversationController = StreamController<ConversationEventEntity>();
-  final StreamController<MessageEntity> messagesController = StreamController();
+  final StreamController<ConversationEventEntity> conversationController = StreamController<ConversationEventEntity>.broadcast();
+  final StreamController<MessageEntity> messagesController = StreamController.broadcast();
+
+  late IO.Socket socket;
 
   @override
   void startWebSocket() {
     final tokens = manageTokensDataSource.getTokens();
     if (tokens != null) {
-      IO.Socket socket = IO.io('wss://chat.api.dev.ebs.io', <String, dynamic>{
+      socket = IO.io('wss://chat.api.dev.ebs.io', <String, dynamic>{
         'transports': ['websocket'],
         'path': '/websockets',
         'x_api_key': 'e54f6ed4520845d5a9ff4c0b26d5a378',
@@ -66,6 +69,11 @@ class WebSocketDataSourceImpl implements WebSocketDataSource {
   @override
   StreamController<MessageEntity> getMessagesController() {
     return messagesController;
+  }
+
+  @override
+  void closeWebSocket() {
+    socket.dispose();
   }
 
 

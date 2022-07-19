@@ -14,4 +14,6 @@ class AppAssets {
   static SvgPicture lightningIcon({double size = 24, required Color color}) => SvgPicture.asset('res/images/lightning_icon.svg', width: size.w, height: size.h, color: color,);
   static SvgPicture sendIcon({double size = 24, required Color color}) => SvgPicture.asset('res/images/send_icon.svg', width: size.w, height: size.h, color: color,);
   static SvgPicture attachIcon({double size = 24, required Color color}) => SvgPicture.asset('res/images/attach_icon.svg', width: size.w, height: size.h, color: color,);
+  static SvgPicture bigMessage({double size = 136, required Color color}) => SvgPicture.asset('res/images/big_message.svg', width: size.w, height: size.h, color: color,);
+  static SvgPicture checkArrow({double width = 12,  double height = 9})  => SvgPicture.asset('res/images/check_arrow.svg', width: width.w, height: height.h,);
 }

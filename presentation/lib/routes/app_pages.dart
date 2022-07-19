@@ -1,3 +1,7 @@
+import 'package:chat/modules/main/new_group/group_initial_settings/bindings/group_initial_settings_binding.dart';
+import 'package:chat/modules/main/new_group/group_initial_settings/views/group_initial_settings_screen.dart';
+import 'package:chat/modules/main/new_group/group_members/bindings/group_members_binding.dart';
+import 'package:chat/modules/main/new_group/group_members/views/group_members_screen.dart';
 import 'package:get/get.dart';
 import 'package:chat/modules/authentication/login/bindings/login_binding.dart';
 import 'package:chat/modules/authentication/login/views/login_page.dart';
@@ -23,6 +27,7 @@ class AppPages {
   static const CHATS = Routes.CHATS;
   static const ROOM = Routes.ROOM;
   static const NEWCONVERSATION = Routes.NEWCONVERSATION;
+  static const GROUPMEMBERS = Routes.GROUPMEMBERS;
   static final routes = [
     GetPage(
       name: '/',
@@ -34,7 +39,9 @@ class AppPages {
         GetPage(name: _Paths.CHATS, page: () => const ChatsPage(), bindings: []),
         GetPage(name: _Paths.MENTIONS, page: () => const MentionsPage(), bindings: []),
         GetPage(name: _Paths.ROOM, page: () => ChatRoomScreen(), bindings: [ChatRoomBinding()]),
-        GetPage(name: _Paths.NEWCONVERSATION, page: () => NewConversationScreen(), bindings: [NewConversationBinding()])
+        GetPage(name: _Paths.NEWCONVERSATION, page: () => NewConversationScreen(), bindings: [NewConversationBinding()]),
+        GetPage(name: _Paths.GROUPINITIALSETTINGS, page: () => GroupInitialSettingsScreen(), bindings: [GroupInitialSettingsBinding()]),
+        GetPage(name: _Paths.GROUPMEMBERS, page: () => GroupMembersScreen(), bindings: [GroupMembersBinding()])
       ],
     ),
   ];

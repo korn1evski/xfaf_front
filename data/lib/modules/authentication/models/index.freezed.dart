@@ -141,7 +141,7 @@ abstract class _AccessTokenApiDto implements AccessTokenApiDto {
       _$_AccessTokenApiDto.fromJson;
 
   @override
-  String get access => throw _privateConstructorUsedError;
+  String get access;
   @override
   @JsonKey(ignore: true)
   _$$_AccessTokenApiDtoCopyWith<_$_AccessTokenApiDto> get copyWith =>
@@ -294,9 +294,9 @@ abstract class _AuthJWTResponseApiDto implements AuthJWTResponseApiDto {
       _$_AuthJWTResponseApiDto.fromJson;
 
   @override
-  String get access => throw _privateConstructorUsedError;
+  String get access;
   @override
-  String get refresh => throw _privateConstructorUsedError;
+  String get refresh;
   @override
   @JsonKey(ignore: true)
   _$$_AuthJWTResponseApiDtoCopyWith<_$_AuthJWTResponseApiDto> get copyWith =>

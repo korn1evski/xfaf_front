@@ -11,13 +11,17 @@ import 'package:side_sheet/side_sheet.dart';
 import '../../modules/main/account/views/account_info_widget.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({Key? key,
-    required this.text,
-    this.withBackArrow = false,
-    this.withWrite = false,
-    this.withProfileImage = false,
-    this.pageContext,
-    this.imgUrl = ''})
+  const CustomAppBar(
+      {Key? key,
+      required this.text,
+      this.withBackArrow = false,
+      this.withWrite = false,
+      this.withProfileImage = false,
+      this.pageContext,
+      this.withNextArrow = false,
+      this.nextFunction,
+      this.nextIsLoading = false,
+      this.imgUrl = ''})
       : super(key: key);
   final String text;
   final bool withBackArrow;
@@ -25,6 +29,9 @@ class CustomAppBar extends StatelessWidget {
   final bool withProfileImage;
   final String imgUrl;
   final BuildContext? pageContext;
+  final bool withNextArrow;
+  final Function()? nextFunction;
+  final bool nextIsLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +40,10 @@ class CustomAppBar extends StatelessWidget {
         Container(
             width: double.maxFinite,
             height: 56.h,
-            decoration: BoxDecoration(border: Border(bottom: BorderSide(width: 1, color: AppColors.mainBorderColor))),
+            decoration: BoxDecoration(
+                border: Border(
+                    bottom: BorderSide(
+                        width: 1, color: AppColors.mainBorderColor))),
             child: Center(
               child: CommonText(
                 text: text,
@@ -45,35 +55,78 @@ class CustomAppBar extends StatelessWidget {
             )),
         withBackArrow
             ? Positioned(
-            top: 16.h,
-            left: 8.w,
-            child: GestureDetector(
-                onTap: () {
-                  Get.back();
-                },
-                child: AppAssets.backIcon(color: AppColors.mainTextColor)))
+                top: 16.h,
+                left: 8.w,
+                child: GestureDetector(
+                    onTap: () {
+                      Get.back();
+                    },
+                    child: AppAssets.backIcon(color: AppColors.mainTextColor)))
             : const SizedBox(),
         withProfileImage
             ? Positioned(
-            top: 8.h,
-            left: 8.w,
-            child: GestureDetector(
-                onTap: () {
-                  if (pageContext != null) {
-                    SideSheet.left(body: AccountInfoWidget(), context: pageContext!, width: Get.size.width * 0.7);
-                  }
-                },
-                child: RoundedCachedImage(imgUrl: imgUrl)))
+                top: 8.h,
+                left: 8.w,
+                child: GestureDetector(
+                    onTap: () {
+                      if (pageContext != null) {
+                        SideSheet.left(
+                            body: AccountInfoWidget(),
+                            context: pageContext!,
+                            width: Get.size.width * 0.7);
+                      }
+                    },
+                    child: RoundedCachedImage(imgUrl: imgUrl)))
             : const SizedBox(),
         withWrite
             ? Positioned(
-              top: 6.h,
-              right: 8.w,
-              child: OptionsContainer(map: {'Private' : (){
-                Get.toNamed(Routes.NEWCONVERSATION);
-              }, 'Group' : (){}})
-            )
-            : const SizedBox(),
+                top: 6.h,
+                right: 8.w,
+                child: OptionsContainer(map: {
+                  'Private': () {
+                    Get.toNamed(Routes.NEWCONVERSATION);
+                  },
+                  'Group': () {
+                    Get.toNamed(Routes.GROUPINITIALSETTINGS);
+                  }
+                }))
+            : withNextArrow
+                ? Positioned(
+                    top: 13.h,
+                    right: 8.w,
+                    child: GestureDetector(
+                      onTap: nextFunction,
+                      child: Container(
+                          width: 35.w,
+                          height: 35.w,
+                          decoration: BoxDecoration(
+                              color: AppColors.mainBlue,
+                              borderRadius: BorderRadius.circular(30)),
+                          child: Center(
+                            child: Icon(
+                              Icons.arrow_forward_ios_rounded,
+                              color: Colors.white,
+                              size: 20.w,
+                            ),
+                          )),
+                    ))
+                : nextIsLoading
+                    ? Positioned(
+                        top: 13.h,
+                        right: 8.w,
+                        child: Container(
+                            width: 35.w,
+                            height: 35.w,
+                            child: Center(
+                                child: SizedBox(
+                                    width: 20.w,
+                                    height: 20.w,
+                                    child: CircularProgressIndicator(
+                                      color: AppColors.blueWhiteBack,
+                                      strokeWidth: 2.w,
+                                    )))),
+                      )
+                    : const SizedBox(),
       ],
     );
   }

@@ -152,5 +152,16 @@
   "filter" : "filter",
   "companies" : "companies",
   "allCompanies" : "all companies",
-  "categories" : "categories"
+  "categories" : "categories",
+  "newDirectMessage" : "new direct message",
+  "newGroup" : "new group",
+  "signOut" : "sign out",
+  "addMembers" : "add members",
+  "noUsersFound" : "no users found",
+  "sendAMessage" : "send a message",
+  "groupSettings" : "group settings",
+  "letsStartChatting" : "Let\\'s start chatting!",
+  "chat" : "chat",
+  "theBeginningOfConversation" : "the beginning of conversations",
+  "areYouSureDeletingConversation" : "Are you sure about deleting the conversation?"
 }

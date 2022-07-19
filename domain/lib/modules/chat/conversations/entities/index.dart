@@ -11,3 +11,4 @@ part 'conversation_entity.dart';
 part 'conversation_inside_message_entity.dart';
 part 'conversation_websocket_entity.dart';
 part 'conversation_event_entity.dart';
+part 'picture_entity.dart';

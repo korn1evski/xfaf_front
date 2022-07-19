@@ -2,6 +2,8 @@ import 'package:constants/api_constants.dart';
 import 'package:data/core/interceptors/dio_auth_interceptor.dart';
 import 'package:data/core/interceptors/dio_request_interceptor.dart';
 import 'package:data/core/local_database/moor_database.dart';
+import 'package:data/modules/attachments/repository/attachemts_repository_impl.dart';
+import 'package:data/modules/attachments/sources/attachments_data_source.dart';
 import 'package:data/modules/authentication/models/index.dart';
 import 'package:data/modules/authentication/repository/authentication_repository_impl.dart';
 import 'package:data/modules/authentication/sources/login_data_source.dart';
@@ -23,6 +25,7 @@ import 'package:data/modules/websocket/repository/websocket_repository_impl.dart
 import 'package:data/modules/websocket/sources/websocket_data_source.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/core/errors/failure.dart';
+import 'package:domain/modules/attachments/repository/attachments_repository.dart';
 import 'package:domain/modules/authentication/repository/authentication_repository.dart';
 import 'package:domain/modules/chat/conversations/repository/conversations_repository.dart';
 import 'package:domain/modules/chat/profile/repository/profile_repository.dart';
@@ -69,6 +72,7 @@ Future<void> init({Function(Failure error)? onError}) async {
   dataDi.registerLazySingleton<RoomDataSource>(() => RoomDataSourceImpl(dioClient: _apiClient));
   dataDi.registerLazySingleton<WebSocketDataSource>(() => WebSocketDataSourceImpl(manageTokensDataSource: dataDi<ManageTokensDataSource>()));
   dataDi.registerLazySingleton<ChatUsersDataSource>(() => ChatUsersDataSourceImpl(dioClient: _apiClient));
+  dataDi.registerLazySingleton<AttachmentsDataSource>(() => AttachmentsDataSourceImpl(dioClient: _apiClient));
 
 
   //Adding auth interceptors in case at least refreshToken is saved in localStorage
@@ -92,6 +96,7 @@ Future<void> init({Function(Failure error)? onError}) async {
   dataDi.registerLazySingleton<RoomRepository>(() => RoomRepositoryImpl(roomDataSource: dataDi<RoomDataSource>()));
   dataDi.registerLazySingleton<WebSocketRepository>(() => WebSocketRepositoryImpl(webSocketDataSource: dataDi<WebSocketDataSource>()));
   dataDi.registerLazySingleton<ChatUsersRepository>(() => ChatUsersRepositoryImpl(chatUsersDataSource: dataDi<ChatUsersDataSource>()));
+  dataDi.registerLazySingleton<AttachmentsRepository>(() => AttachmentsRepositoryImpl(attachmentsDataSource: dataDi<AttachmentsDataSource>()));
 
 
   return;

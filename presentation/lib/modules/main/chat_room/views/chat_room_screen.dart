@@ -13,9 +13,7 @@ import 'package:chat/modules/main/chat_room/controllers/chat_room_controller.dar
 import 'package:chat/modules/main/chat_room/widgets/bubble_widget.dart';
 import 'package:chat/modules/main/chat_room/widgets/chat_room_bar.dart';
 import 'package:chat/modules/main/chat_room/widgets/date_card.dart';
-import 'package:chat/modules/main/conversations/controllers/chats_controller.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-
 import '../../../../constants/resources/help_functions.dart';
 
 class ChatRoomScreen extends StatefulWidget {
@@ -48,16 +46,24 @@ class _ChatRoomScreenState extends BasePageState<ChatRoomScreen> {
               children: [
                 Obx(
                   () => ChatRoomBar(
-                    notificationsNumber: chatRoomController.otherChatsNotifications.value,
+                    notificationsNumber:
+                        chatRoomController.otherChatsNotifications.value,
                     backOnTap: () async {
                       Get.back();
-                      // await Get.find<ChatsController>().getConversations();
                       await chatRoomController.onBack();
                     },
-                    profileImgUrl: chatRoomController.conversationImg.value,
-                    additionalInfoText: 'Seen 1 hour ago',
+                    profileImgUrl:
+                        chatRoomController.conversationEntity.picture?.url ??
+                            chatRoomController.conversationImg.value,
+                    additionalInfoText: chatRoomController
+                                .conversationEntity.type ==
+                            2
+                        ? '${chatRoomController.conversationEntity.membersCount} members'
+                        : 'Seen 1 hour ago',
                     roomName: chatRoomController.conversationEntity.type == 1
-                        ? givePrivateConversationName(chatRoomController.chatsController.currentUserEntity!,
+                        ? givePrivateConversationName(
+                            chatRoomController
+                                .chatsController.currentUserEntity!,
                             chatRoomController.conversationEntity)
                         : chatRoomController.conversationEntity.name,
                   ),
@@ -77,7 +83,8 @@ class _ChatRoomScreenState extends BasePageState<ChatRoomScreen> {
                               child: Obx(
                                 () {
                                   chatRoomController.messagesList.length;
-                                  return GroupedListView<MessageEntity, DateTime>(
+                                  return GroupedListView<MessageEntity,
+                                      DateTime>(
                                     shrinkWrap: true,
                                     padding: EdgeInsets.all(
                                       8.w,
@@ -87,22 +94,37 @@ class _ChatRoomScreenState extends BasePageState<ChatRoomScreen> {
                                     dragStartBehavior: DragStartBehavior.down,
                                     elements: chatRoomController.messagesList,
                                     groupBy: (message) => DateTime(
-                                        DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").parse(message.timestamp).year,
-                                        DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").parse(message.timestamp).month,
-                                        DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").parse(message.timestamp).day),
-                                    groupHeaderBuilder: (MessageEntity message) => DateCard(
-                                        date: DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").parse(message.timestamp)),
-                                    itemBuilder: (context, MessageEntity message) {
-                                      bool sentByMe = false;
-                                      if (message.type == 1) {
-                                        sentByMe =
-                                            message.owner!.id == Get.find<ChatsController>().currentUserEntity!.id;
-                                      }
+                                        DateFormat(
+                                                "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+                                            .parse(message.timestamp)
+                                            .year,
+                                        DateFormat(
+                                                "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+                                            .parse(message.timestamp)
+                                            .month,
+                                        DateFormat(
+                                                "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+                                            .parse(message.timestamp)
+                                            .day),
+                                    groupHeaderBuilder:
+                                        (MessageEntity message) => DateCard(
+                                            date: DateFormat(
+                                                    "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+                                                .parse(message.timestamp)),
+                                    itemBuilder:
+                                        (context, MessageEntity message) {
+                                      chatRoomController
+                                          .setBubbleSettings(message);
                                       return BubbleWidget(
+                                        isGroup: message.conversation.type == 2,
                                         isNotification: message.type == 2,
-                                        sentByMe: sentByMe,
+                                        sentByMe: chatRoomController.sentByMe,
+                                        owner: message.owner,
+                                        isFirst: chatRoomController.isFirst,
+                                        isLast: chatRoomController.isLast,
                                         text: message.content,
-                                        date: DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+                                        date: DateFormat(
+                                                "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
                                             .parse(message.timestamp)
                                             .add(Duration(hours: 3)),
                                       );
@@ -115,7 +137,9 @@ class _ChatRoomScreenState extends BasePageState<ChatRoomScreen> {
                 Container(
                   decoration: BoxDecoration(
                       color: AppColors.backColor,
-                      border: Border(top: BorderSide(color: AppColors.mainBorderColor, width: 1))),
+                      border: Border(
+                          top: BorderSide(
+                              color: AppColors.mainBorderColor, width: 1))),
                   padding: EdgeInsets.symmetric(horizontal: 8.w),
                   height: 56.h,
                   child: Row(
@@ -137,7 +161,8 @@ class _ChatRoomScreenState extends BasePageState<ChatRoomScreen> {
                               onTap: () async {
                                 await chatRoomController.sendMessage();
                               },
-                              child: AppAssets.sendIcon(color: AppColors.labelColor))
+                              child: AppAssets.sendIcon(
+                                  color: AppColors.labelColor))
                           : chatRoomController.messageIsLoading.value
                               ? SizedBox(
                                   width: 15.w,

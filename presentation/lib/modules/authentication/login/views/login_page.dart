@@ -1,6 +1,8 @@
+import 'package:chat/constants/app_constants.dart';
+import 'package:chat/generated/locale_keys.loc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' hide Trans;
 import 'package:chat/common/widgets/auth_input.dart';
 import 'package:chat/common/widgets/base/base_page.dart';
 import 'package:chat/common/widgets/base/base_page_state.dart';
@@ -38,7 +40,7 @@ class LoginPageState extends BasePageState<LoginPage> {
               child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CustomAppBar(text: 'Login'),
+              CustomAppBar(text: LocaleKeys.login.tr().capitalize!),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
                 child: Column(
@@ -52,7 +54,7 @@ class LoginPageState extends BasePageState<LoginPage> {
                         controller: loginController.emailController,
                         validationFunc: emailValid,
                         showError: loginController.showEmailError.value,
-                        labelText: 'Email',
+                        labelText: LocaleKeys.email.tr().capitalize!,
                         onChange: (value) {
                           inputValidOnChange(loginController.showEmailError);
                         },
@@ -71,7 +73,7 @@ class LoginPageState extends BasePageState<LoginPage> {
                     ),
                     CustomTextButton(
                       onPressed: loginController.finalValidatePage,
-                      text: 'Login',
+                      text: LocaleKeys.login.tr().capitalize!,
                       backColor: AppColors.blueWhiteBack,
                       textColor: AppColors.blueWhiteText,
                     ),

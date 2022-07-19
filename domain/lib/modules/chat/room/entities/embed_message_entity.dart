@@ -4,7 +4,7 @@ part of room_entities;
 class EmbedMessageEntity with _$EmbedMessageEntity {
   factory EmbedMessageEntity({
     @JsonKey(name: '_id') required String id,
-    required List<AttachmentEntity> attachments,
+    required List<String> attachments,
     required String content,
     required String conversation,
     @JsonKey(name: 'is_poll') required bool isPoll,

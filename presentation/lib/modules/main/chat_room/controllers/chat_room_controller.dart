@@ -33,6 +33,59 @@ class ChatRoomController extends GetxController {
   Rx<int> otherChatsNotifications = 0.obs;
   String previousMessageId = '';
   final chatsController = Get.find<ChatsController>();
+  bool sentByMe = false;
+  bool isFirst = false;
+  bool isLast = false;
+
+  setBubbleSettings(MessageEntity message){
+    if (message.type == 1) {
+      sentByMe = message.owner!.id ==
+          Get.find<ChatsController>()
+              .currentUserEntity!
+              .id;
+      if (
+          conversationEntity.type ==
+          2) {
+        int currentIndex =
+    messagesList
+            .indexOf(message);
+        if (currentIndex != 0 &&
+
+                messagesList[
+            currentIndex - 1]
+                .owner!
+                .id !=
+                message.owner!.id ||
+            currentIndex != 0 &&
+                messagesList[
+                currentIndex - 1]
+                    .type ==
+                    2) {
+          isFirst = true;
+        }
+
+        if (currentIndex ==
+            messagesList.length -
+                1) {
+          isLast = true;
+        }
+
+        if (currentIndex !=
+            messagesList.length -
+                1 &&
+            messagesList[
+            currentIndex + 1]
+                .owner!
+                .id !=
+                message.owner!.id) {
+          isLast = true;
+        }
+        if (currentIndex == 0) {
+          isFirst = true;
+        }
+      }
+    }
+  }
 
   initialLoading() async {
     setIsLoading(isLoading);
@@ -47,7 +100,7 @@ class ChatRoomController extends GetxController {
     messagesList.refresh();
     setIsLoading(isLoading);
 
-    messagesSubscription = chatsController.messagesStream.listen((message) {
+    messagesSubscription = chatsController.messagesStream.asBroadcastStream().listen((message) {
         if(message.conversation.id == conversationEntity.id && messagesList.last.id != message.id) {
           messagesList.add(message);
           messagesList.refresh();
@@ -112,6 +165,7 @@ class ChatRoomController extends GetxController {
   void onClose() {
     super.onClose();
     messageInputController.dispose();
+    messagesSubscription.cancel();
     refreshController.dispose();
   }
 }

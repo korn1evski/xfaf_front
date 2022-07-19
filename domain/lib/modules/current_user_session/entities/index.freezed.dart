@@ -206,15 +206,15 @@ abstract class _CurrentUserEntity extends CurrentUserEntity {
   _CurrentUserEntity._() : super._();
 
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String get email => throw _privateConstructorUsedError;
+  String get email;
   @override
-  String get firstName => throw _privateConstructorUsedError;
+  String get firstName;
   @override
-  String get lastName => throw _privateConstructorUsedError;
+  String get lastName;
   @override
-  String? get picture => throw _privateConstructorUsedError;
+  String? get picture;
   @override
   @JsonKey(ignore: true)
   _$$_CurrentUserEntityCopyWith<_$_CurrentUserEntity> get copyWith =>

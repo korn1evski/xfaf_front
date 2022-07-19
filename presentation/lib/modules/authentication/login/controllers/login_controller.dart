@@ -1,12 +1,13 @@
 import 'package:domain/modules/authentication/entities/index.dart';
 import 'package:domain/modules/authentication/usecases/login_use_case.dart';
 import 'package:domain/modules/chat/profile/usecases/get_profile_usecase.dart';
+import 'package:domain/modules/websocket/usecases/start_websocket_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:chat/constants/resources/help_functions.dart';
 import 'package:chat/initial_binding.dart';
 import 'package:chat/routes/app_pages.dart';
-
+import 'package:domain/di/domain_injection_container.dart' as domain_injection;
 import '../../../../constants/resources/validation_functions.dart';
 
 class LoginController extends GetxController {
@@ -23,7 +24,7 @@ class LoginController extends GetxController {
   Rx<bool> showEmailError = false.obs;
   Rx<bool> isLoading = false.obs;
 
-  void finalValidatePage() async{
+  Future<void> finalValidatePage() async{
     final emailVerify = validateInput(emailController, showEmailError, emailValid);
     final passVerify = validateInput(passwordController, showPasswordError, passValid);
 
@@ -34,6 +35,7 @@ class LoginController extends GetxController {
       result.fold((l){}, (r) async{
         if(r){
           await getProfileUseCase.call();
+          domain_injection.sl<StartWebSocketUseCase>().call();
           InitialBinding().dependencies();
           Get.offNamed(Routes.MENU);
         }

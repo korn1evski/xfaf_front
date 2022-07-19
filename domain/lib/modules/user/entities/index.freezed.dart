@@ -174,13 +174,13 @@ abstract class _UserEntity implements UserEntity {
       final String? picture}) = _$_UserEntity;
 
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String get firstName => throw _privateConstructorUsedError;
+  String get firstName;
   @override
-  String get lastName => throw _privateConstructorUsedError;
+  String get lastName;
   @override
-  String? get picture => throw _privateConstructorUsedError;
+  String? get picture;
   @override
   @JsonKey(ignore: true)
   _$$_UserEntityCopyWith<_$_UserEntity> get copyWith =>

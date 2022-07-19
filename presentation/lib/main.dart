@@ -34,7 +34,6 @@ Future<void> main() async {
     RootController controller = Get.find();
     await controller.getCurrentSession();
 
-    domain_injection.sl<StartWebSocketUseCase>().call();
 
     runApp(
       EasyLocalization(
@@ -65,6 +64,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     Get.put(MainController());
     RootController controller = Get.find();
     isLogged = controller.currentUserEntity.value != null;
+
+    isLogged ? domain_injection.sl<StartWebSocketUseCase>().call() : null;
 
     WidgetsBinding.instance.addObserver(this);
     final Brightness? brightness = WidgetsBinding.instance.window.platformBrightness;

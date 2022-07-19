@@ -439,36 +439,36 @@ abstract class _AttachmentApiDto implements AttachmentApiDto {
 
   @override
   @JsonKey(name: '_id')
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String get filename => throw _privateConstructorUsedError;
+  String get filename;
   @override
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
-  String get size => throw _privateConstructorUsedError;
+  String get size;
   @override
-  int get width => throw _privateConstructorUsedError;
+  int get width;
   @override
-  int get height => throw _privateConstructorUsedError;
+  int get height;
   @override
-  int get type => throw _privateConstructorUsedError;
+  int get type;
   @override
-  String get extension => throw _privateConstructorUsedError;
+  String get extension;
   @override
-  String get url => throw _privateConstructorUsedError;
+  String get url;
   @override
-  String get mimetype => throw _privateConstructorUsedError;
+  String get mimetype;
   @override
-  String get timestamp => throw _privateConstructorUsedError;
+  String get timestamp;
   @override
   @JsonKey(name: 'edited_timestamp')
-  String get editedTimestamp => throw _privateConstructorUsedError;
+  String get editedTimestamp;
   @override
-  ProfileApiDto get owner => throw _privateConstructorUsedError;
+  ProfileApiDto get owner;
   @override
-  ConversationApiDto get conversation => throw _privateConstructorUsedError;
+  ConversationApiDto get conversation;
   @override
-  String get message => throw _privateConstructorUsedError;
+  String get message;
   @override
   @JsonKey(ignore: true)
   _$$_AttachmentApiDtoCopyWith<_$_AttachmentApiDto> get copyWith =>
@@ -483,7 +483,7 @@ EmbedMessageApiDto _$EmbedMessageApiDtoFromJson(Map<String, dynamic> json) {
 mixin _$EmbedMessageApiDto {
   @JsonKey(name: '_id')
   String get id => throw _privateConstructorUsedError;
-  List<AttachmentApiDto> get attachments => throw _privateConstructorUsedError;
+  List<String> get attachments => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
   String get conversation => throw _privateConstructorUsedError;
   @JsonKey(name: 'is_poll')
@@ -511,7 +511,7 @@ abstract class $EmbedMessageApiDtoCopyWith<$Res> {
       _$EmbedMessageApiDtoCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: '_id') String id,
-      List<AttachmentApiDto> attachments,
+      List<String> attachments,
       String content,
       String conversation,
       @JsonKey(name: 'is_poll') bool isPoll,
@@ -554,7 +554,7 @@ class _$EmbedMessageApiDtoCopyWithImpl<$Res>
       attachments: attachments == freezed
           ? _value.attachments
           : attachments // ignore: cast_nullable_to_non_nullable
-              as List<AttachmentApiDto>,
+              as List<String>,
       content: content == freezed
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -607,7 +607,7 @@ abstract class _$$_EmbedMessageApiDtoCopyWith<$Res>
   @override
   $Res call(
       {@JsonKey(name: '_id') String id,
-      List<AttachmentApiDto> attachments,
+      List<String> attachments,
       String content,
       String conversation,
       @JsonKey(name: 'is_poll') bool isPoll,
@@ -653,7 +653,7 @@ class __$$_EmbedMessageApiDtoCopyWithImpl<$Res>
       attachments: attachments == freezed
           ? _value._attachments
           : attachments // ignore: cast_nullable_to_non_nullable
-              as List<AttachmentApiDto>,
+              as List<String>,
       content: content == freezed
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -695,7 +695,7 @@ class __$$_EmbedMessageApiDtoCopyWithImpl<$Res>
 class _$_EmbedMessageApiDto implements _EmbedMessageApiDto {
   _$_EmbedMessageApiDto(
       {@JsonKey(name: '_id') required this.id,
-      required final List<AttachmentApiDto> attachments,
+      required final List<String> attachments,
       required this.content,
       required this.conversation,
       @JsonKey(name: 'is_poll') required this.isPoll,
@@ -712,9 +712,9 @@ class _$_EmbedMessageApiDto implements _EmbedMessageApiDto {
   @override
   @JsonKey(name: '_id')
   final String id;
-  final List<AttachmentApiDto> _attachments;
+  final List<String> _attachments;
   @override
-  List<AttachmentApiDto> get attachments {
+  List<String> get attachments {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_attachments);
   }
@@ -797,7 +797,7 @@ abstract class _EmbedMessageApiDto implements EmbedMessageApiDto {
   factory _EmbedMessageApiDto(
       {@JsonKey(name: '_id')
           required final String id,
-      required final List<AttachmentApiDto> attachments,
+      required final List<String> attachments,
       required final String content,
       required final String conversation,
       @JsonKey(name: 'is_poll')
@@ -814,28 +814,28 @@ abstract class _EmbedMessageApiDto implements EmbedMessageApiDto {
 
   @override
   @JsonKey(name: '_id')
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  List<AttachmentApiDto> get attachments => throw _privateConstructorUsedError;
+  List<String> get attachments;
   @override
-  String get content => throw _privateConstructorUsedError;
+  String get content;
   @override
-  String get conversation => throw _privateConstructorUsedError;
+  String get conversation;
   @override
   @JsonKey(name: 'is_poll')
-  bool get isPoll => throw _privateConstructorUsedError;
+  bool get isPoll;
   @override // @JsonKey(name: 'is_pool') required bool isPool,
 // required String organization,
-  String get timestamp => throw _privateConstructorUsedError;
+  String get timestamp;
   @override
-  ProfileApiDto get owner => throw _privateConstructorUsedError;
+  ProfileApiDto get owner;
   @override
-  String get tag => throw _privateConstructorUsedError;
+  String get tag;
   @override
-  int get type => throw _privateConstructorUsedError;
+  int get type;
   @override // @JsonKey(name: '__v') required int v,
   @JsonKey(name: 'edited_timestamp')
-  String get editedTimestamp => throw _privateConstructorUsedError;
+  String get editedTimestamp;
   @override
   @JsonKey(ignore: true)
   _$$_EmbedMessageApiDtoCopyWith<_$_EmbedMessageApiDto> get copyWith =>
@@ -1160,24 +1160,24 @@ abstract class _EmbedApiDto implements EmbedApiDto {
 
   @override
   @JsonKey(name: '_id')
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  List<AttachmentApiDto> get attachments => throw _privateConstructorUsedError;
+  List<AttachmentApiDto> get attachments;
   @override
-  String get description => throw _privateConstructorUsedError;
+  String get description;
   @override
-  EmbedMessageApiDto get message => throw _privateConstructorUsedError;
+  EmbedMessageApiDto get message;
   @override
-  String get timestamp => throw _privateConstructorUsedError;
+  String get timestamp;
   @override
-  ProfileApiDto get owner => throw _privateConstructorUsedError;
+  ProfileApiDto get owner;
   @override
-  String get tag => throw _privateConstructorUsedError;
+  String get tag;
   @override
-  int get type => throw _privateConstructorUsedError;
+  int get type;
   @override
   @JsonKey(name: 'edited_timestamp')
-  String get editedTimestamp => throw _privateConstructorUsedError;
+  String get editedTimestamp;
   @override
   @JsonKey(ignore: true)
   _$$_EmbedApiDtoCopyWith<_$_EmbedApiDto> get copyWith =>
@@ -1639,38 +1639,37 @@ abstract class _MessageApiDto implements MessageApiDto {
 
   @override
   @JsonKey(name: '_id')
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  bool get after => throw _privateConstructorUsedError;
+  bool get after;
   @override
-  List<AttachmentApiDto> get attachments => throw _privateConstructorUsedError;
+  List<AttachmentApiDto> get attachments;
   @override
-  bool get before => throw _privateConstructorUsedError;
+  bool get before;
   @override
-  String get timestamp => throw _privateConstructorUsedError;
+  String get timestamp;
   @override
-  String get content => throw _privateConstructorUsedError;
+  String get content;
   @override
-  ConversationInsideMessageApiDto get conversation =>
-      throw _privateConstructorUsedError;
+  ConversationInsideMessageApiDto get conversation;
   @override
-  bool get current => throw _privateConstructorUsedError;
+  bool get current;
   @override
-  List<EmbedApiDto> get embeds => throw _privateConstructorUsedError;
+  List<EmbedApiDto> get embeds;
   @override
   @JsonKey(name: 'is_poll')
-  bool get isPoll => throw _privateConstructorUsedError;
+  bool get isPoll;
   @override
-  List<ProfileApiDto> get members => throw _privateConstructorUsedError;
+  List<ProfileApiDto> get members;
   @override
-  ProfileApiDto? get owner => throw _privateConstructorUsedError;
+  ProfileApiDto? get owner;
   @override
-  String get tag => throw _privateConstructorUsedError;
+  String get tag;
   @override
-  int get type => throw _privateConstructorUsedError;
+  int get type;
   @override
   @JsonKey(name: 'edited_timestamp')
-  String get editedTimestamp => throw _privateConstructorUsedError;
+  String get editedTimestamp;
   @override
   @JsonKey(ignore: true)
   _$$_MessageApiDtoCopyWith<_$_MessageApiDto> get copyWith =>

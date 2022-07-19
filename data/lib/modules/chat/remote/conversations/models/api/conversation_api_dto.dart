@@ -12,6 +12,7 @@ class ConversationApiDto with _$ConversationApiDto {
     required int unread,
     @JsonKey(name: 'members_count') required int membersCount,
     required ProfileApiDto owner,
+    PictureApiDto? picture,
     EmbedMessageApiDto? message,
     required String timestamp,
     @JsonKey(name: 'edited_timestamp')  required String editedTimestamp,

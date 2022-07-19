@@ -24,6 +24,7 @@ mixin _$ConversationEntity {
   int get unread => throw _privateConstructorUsedError;
   List<ProfileEntity> get members => throw _privateConstructorUsedError;
   int get membersCount => throw _privateConstructorUsedError;
+  PictureEntity? get picture => throw _privateConstructorUsedError;
   ProfileEntity get owner => throw _privateConstructorUsedError;
   EmbedMessageEntity? get message => throw _privateConstructorUsedError;
   String get timestamp => throw _privateConstructorUsedError;
@@ -48,11 +49,13 @@ abstract class $ConversationEntityCopyWith<$Res> {
       int unread,
       List<ProfileEntity> members,
       int membersCount,
+      PictureEntity? picture,
       ProfileEntity owner,
       EmbedMessageEntity? message,
       String timestamp,
       String editedTimestamp});
 
+  $PictureEntityCopyWith<$Res>? get picture;
   $ProfileEntityCopyWith<$Res> get owner;
   $EmbedMessageEntityCopyWith<$Res>? get message;
 }
@@ -76,6 +79,7 @@ class _$ConversationEntityCopyWithImpl<$Res>
     Object? unread = freezed,
     Object? members = freezed,
     Object? membersCount = freezed,
+    Object? picture = freezed,
     Object? owner = freezed,
     Object? message = freezed,
     Object? timestamp = freezed,
@@ -114,6 +118,10 @@ class _$ConversationEntityCopyWithImpl<$Res>
           ? _value.membersCount
           : membersCount // ignore: cast_nullable_to_non_nullable
               as int,
+      picture: picture == freezed
+          ? _value.picture
+          : picture // ignore: cast_nullable_to_non_nullable
+              as PictureEntity?,
       owner: owner == freezed
           ? _value.owner
           : owner // ignore: cast_nullable_to_non_nullable
@@ -131,6 +139,17 @@ class _$ConversationEntityCopyWithImpl<$Res>
           : editedTimestamp // ignore: cast_nullable_to_non_nullable
               as String,
     ));
+  }
+
+  @override
+  $PictureEntityCopyWith<$Res>? get picture {
+    if (_value.picture == null) {
+      return null;
+    }
+
+    return $PictureEntityCopyWith<$Res>(_value.picture!, (value) {
+      return _then(_value.copyWith(picture: value));
+    });
   }
 
   @override
@@ -168,11 +187,14 @@ abstract class _$$_ConversationEntityCopyWith<$Res>
       int unread,
       List<ProfileEntity> members,
       int membersCount,
+      PictureEntity? picture,
       ProfileEntity owner,
       EmbedMessageEntity? message,
       String timestamp,
       String editedTimestamp});
 
+  @override
+  $PictureEntityCopyWith<$Res>? get picture;
   @override
   $ProfileEntityCopyWith<$Res> get owner;
   @override
@@ -200,6 +222,7 @@ class __$$_ConversationEntityCopyWithImpl<$Res>
     Object? unread = freezed,
     Object? members = freezed,
     Object? membersCount = freezed,
+    Object? picture = freezed,
     Object? owner = freezed,
     Object? message = freezed,
     Object? timestamp = freezed,
@@ -238,6 +261,10 @@ class __$$_ConversationEntityCopyWithImpl<$Res>
           ? _value.membersCount
           : membersCount // ignore: cast_nullable_to_non_nullable
               as int,
+      picture: picture == freezed
+          ? _value.picture
+          : picture // ignore: cast_nullable_to_non_nullable
+              as PictureEntity?,
       owner: owner == freezed
           ? _value.owner
           : owner // ignore: cast_nullable_to_non_nullable
@@ -270,6 +297,7 @@ class _$_ConversationEntity implements _ConversationEntity {
       required this.unread,
       required final List<ProfileEntity> members,
       required this.membersCount,
+      this.picture,
       required this.owner,
       this.message,
       required this.timestamp,
@@ -298,6 +326,8 @@ class _$_ConversationEntity implements _ConversationEntity {
   @override
   final int membersCount;
   @override
+  final PictureEntity? picture;
+  @override
   final ProfileEntity owner;
   @override
   final EmbedMessageEntity? message;
@@ -308,7 +338,7 @@ class _$_ConversationEntity implements _ConversationEntity {
 
   @override
   String toString() {
-    return 'ConversationEntity(id: $id, name: $name, pictureUrl: $pictureUrl, type: $type, public: $public, unread: $unread, members: $members, membersCount: $membersCount, owner: $owner, message: $message, timestamp: $timestamp, editedTimestamp: $editedTimestamp)';
+    return 'ConversationEntity(id: $id, name: $name, pictureUrl: $pictureUrl, type: $type, public: $public, unread: $unread, members: $members, membersCount: $membersCount, picture: $picture, owner: $owner, message: $message, timestamp: $timestamp, editedTimestamp: $editedTimestamp)';
   }
 
   @override
@@ -326,6 +356,7 @@ class _$_ConversationEntity implements _ConversationEntity {
             const DeepCollectionEquality().equals(other._members, _members) &&
             const DeepCollectionEquality()
                 .equals(other.membersCount, membersCount) &&
+            const DeepCollectionEquality().equals(other.picture, picture) &&
             const DeepCollectionEquality().equals(other.owner, owner) &&
             const DeepCollectionEquality().equals(other.message, message) &&
             const DeepCollectionEquality().equals(other.timestamp, timestamp) &&
@@ -344,6 +375,7 @@ class _$_ConversationEntity implements _ConversationEntity {
       const DeepCollectionEquality().hash(unread),
       const DeepCollectionEquality().hash(_members),
       const DeepCollectionEquality().hash(membersCount),
+      const DeepCollectionEquality().hash(picture),
       const DeepCollectionEquality().hash(owner),
       const DeepCollectionEquality().hash(message),
       const DeepCollectionEquality().hash(timestamp),
@@ -366,35 +398,38 @@ abstract class _ConversationEntity implements ConversationEntity {
       required final int unread,
       required final List<ProfileEntity> members,
       required final int membersCount,
+      final PictureEntity? picture,
       required final ProfileEntity owner,
       final EmbedMessageEntity? message,
       required final String timestamp,
       required final String editedTimestamp}) = _$_ConversationEntity;
 
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
-  String get pictureUrl => throw _privateConstructorUsedError;
+  String get pictureUrl;
   @override
-  int get type => throw _privateConstructorUsedError;
+  int get type;
   @override
-  bool get public => throw _privateConstructorUsedError;
+  bool get public;
   @override
-  int get unread => throw _privateConstructorUsedError;
+  int get unread;
   @override
-  List<ProfileEntity> get members => throw _privateConstructorUsedError;
+  List<ProfileEntity> get members;
   @override
-  int get membersCount => throw _privateConstructorUsedError;
+  int get membersCount;
   @override
-  ProfileEntity get owner => throw _privateConstructorUsedError;
+  PictureEntity? get picture;
   @override
-  EmbedMessageEntity? get message => throw _privateConstructorUsedError;
+  ProfileEntity get owner;
   @override
-  String get timestamp => throw _privateConstructorUsedError;
+  EmbedMessageEntity? get message;
   @override
-  String get editedTimestamp => throw _privateConstructorUsedError;
+  String get timestamp;
+  @override
+  String get editedTimestamp;
   @override
   @JsonKey(ignore: true)
   _$$_ConversationEntityCopyWith<_$_ConversationEntity> get copyWith =>
@@ -754,32 +789,32 @@ abstract class _ConversationInsideMessageEntity
 
   @override
   @JsonKey(name: '_id')
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
   @JsonKey(name: 'picture_url')
-  String get pictureUrl => throw _privateConstructorUsedError;
+  String get pictureUrl;
   @override
-  int get type => throw _privateConstructorUsedError;
+  int get type;
   @override
-  bool get public => throw _privateConstructorUsedError;
+  bool get public;
   @override
-  List<String> get members => throw _privateConstructorUsedError;
+  List<String> get members;
   @override
-  int get unread => throw _privateConstructorUsedError;
+  int get unread;
   @override
   @JsonKey(name: 'members_count')
-  int get membersCount => throw _privateConstructorUsedError;
+  int get membersCount;
   @override
-  String get owner => throw _privateConstructorUsedError;
+  String get owner;
   @override
-  String? get message => throw _privateConstructorUsedError;
+  String? get message;
   @override
-  String get timestamp => throw _privateConstructorUsedError;
+  String get timestamp;
   @override
   @JsonKey(name: 'edited_timestamp')
-  String get editedTimestamp => throw _privateConstructorUsedError;
+  String get editedTimestamp;
   @override
   @JsonKey(ignore: true)
   _$$_ConversationInsideMessageEntityCopyWith<
@@ -1136,29 +1171,29 @@ abstract class _ConversationWebSocketEntity
       required final String editedTimestamp}) = _$_ConversationWebSocketEntity;
 
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
-  String get pictureUrl => throw _privateConstructorUsedError;
+  String get pictureUrl;
   @override
-  int get type => throw _privateConstructorUsedError;
+  int get type;
   @override
-  bool get public => throw _privateConstructorUsedError;
+  bool get public;
   @override
-  List<ProfileEntity> get members => throw _privateConstructorUsedError;
+  List<ProfileEntity> get members;
   @override
-  int? get unread => throw _privateConstructorUsedError;
+  int? get unread;
   @override
-  int get membersCount => throw _privateConstructorUsedError;
+  int get membersCount;
   @override
-  ProfileEntity get owner => throw _privateConstructorUsedError;
+  ProfileEntity get owner;
   @override
-  String? get message => throw _privateConstructorUsedError;
+  String? get message;
   @override
-  String get timestamp => throw _privateConstructorUsedError;
+  String get timestamp;
   @override
-  String get editedTimestamp => throw _privateConstructorUsedError;
+  String get editedTimestamp;
   @override
   @JsonKey(ignore: true)
   _$$_ConversationWebSocketEntityCopyWith<_$_ConversationWebSocketEntity>
@@ -1310,12 +1345,405 @@ abstract class _ConversationEventEntity implements ConversationEventEntity {
       _$_ConversationEventEntity;
 
   @override
-  String get event => throw _privateConstructorUsedError;
+  String get event;
   @override
-  ConversationWebSocketEntity get conversation =>
-      throw _privateConstructorUsedError;
+  ConversationWebSocketEntity get conversation;
   @override
   @JsonKey(ignore: true)
   _$$_ConversationEventEntityCopyWith<_$_ConversationEventEntity>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$PictureEntity {
+  String get id => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get url => throw _privateConstructorUsedError;
+  String get extension => throw _privateConstructorUsedError;
+  String get mimetype => throw _privateConstructorUsedError;
+  int get size => throw _privateConstructorUsedError;
+  int get type => throw _privateConstructorUsedError;
+  int get width => throw _privateConstructorUsedError;
+  int get height => throw _privateConstructorUsedError;
+  String get owner => throw _privateConstructorUsedError;
+  String? get fileId => throw _privateConstructorUsedError;
+  String get fileName => throw _privateConstructorUsedError;
+  String get timestamp => throw _privateConstructorUsedError;
+  String get editedTimestamp => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $PictureEntityCopyWith<PictureEntity> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PictureEntityCopyWith<$Res> {
+  factory $PictureEntityCopyWith(
+          PictureEntity value, $Res Function(PictureEntity) then) =
+      _$PictureEntityCopyWithImpl<$Res>;
+  $Res call(
+      {String id,
+      String name,
+      String url,
+      String extension,
+      String mimetype,
+      int size,
+      int type,
+      int width,
+      int height,
+      String owner,
+      String? fileId,
+      String fileName,
+      String timestamp,
+      String editedTimestamp});
+}
+
+/// @nodoc
+class _$PictureEntityCopyWithImpl<$Res>
+    implements $PictureEntityCopyWith<$Res> {
+  _$PictureEntityCopyWithImpl(this._value, this._then);
+
+  final PictureEntity _value;
+  // ignore: unused_field
+  final $Res Function(PictureEntity) _then;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? url = freezed,
+    Object? extension = freezed,
+    Object? mimetype = freezed,
+    Object? size = freezed,
+    Object? type = freezed,
+    Object? width = freezed,
+    Object? height = freezed,
+    Object? owner = freezed,
+    Object? fileId = freezed,
+    Object? fileName = freezed,
+    Object? timestamp = freezed,
+    Object? editedTimestamp = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      url: url == freezed
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
+      extension: extension == freezed
+          ? _value.extension
+          : extension // ignore: cast_nullable_to_non_nullable
+              as String,
+      mimetype: mimetype == freezed
+          ? _value.mimetype
+          : mimetype // ignore: cast_nullable_to_non_nullable
+              as String,
+      size: size == freezed
+          ? _value.size
+          : size // ignore: cast_nullable_to_non_nullable
+              as int,
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as int,
+      width: width == freezed
+          ? _value.width
+          : width // ignore: cast_nullable_to_non_nullable
+              as int,
+      height: height == freezed
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as int,
+      owner: owner == freezed
+          ? _value.owner
+          : owner // ignore: cast_nullable_to_non_nullable
+              as String,
+      fileId: fileId == freezed
+          ? _value.fileId
+          : fileId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fileName: fileName == freezed
+          ? _value.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
+              as String,
+      timestamp: timestamp == freezed
+          ? _value.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
+              as String,
+      editedTimestamp: editedTimestamp == freezed
+          ? _value.editedTimestamp
+          : editedTimestamp // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$$_PictureEntityCopyWith<$Res>
+    implements $PictureEntityCopyWith<$Res> {
+  factory _$$_PictureEntityCopyWith(
+          _$_PictureEntity value, $Res Function(_$_PictureEntity) then) =
+      __$$_PictureEntityCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {String id,
+      String name,
+      String url,
+      String extension,
+      String mimetype,
+      int size,
+      int type,
+      int width,
+      int height,
+      String owner,
+      String? fileId,
+      String fileName,
+      String timestamp,
+      String editedTimestamp});
+}
+
+/// @nodoc
+class __$$_PictureEntityCopyWithImpl<$Res>
+    extends _$PictureEntityCopyWithImpl<$Res>
+    implements _$$_PictureEntityCopyWith<$Res> {
+  __$$_PictureEntityCopyWithImpl(
+      _$_PictureEntity _value, $Res Function(_$_PictureEntity) _then)
+      : super(_value, (v) => _then(v as _$_PictureEntity));
+
+  @override
+  _$_PictureEntity get _value => super._value as _$_PictureEntity;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? url = freezed,
+    Object? extension = freezed,
+    Object? mimetype = freezed,
+    Object? size = freezed,
+    Object? type = freezed,
+    Object? width = freezed,
+    Object? height = freezed,
+    Object? owner = freezed,
+    Object? fileId = freezed,
+    Object? fileName = freezed,
+    Object? timestamp = freezed,
+    Object? editedTimestamp = freezed,
+  }) {
+    return _then(_$_PictureEntity(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      url: url == freezed
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
+      extension: extension == freezed
+          ? _value.extension
+          : extension // ignore: cast_nullable_to_non_nullable
+              as String,
+      mimetype: mimetype == freezed
+          ? _value.mimetype
+          : mimetype // ignore: cast_nullable_to_non_nullable
+              as String,
+      size: size == freezed
+          ? _value.size
+          : size // ignore: cast_nullable_to_non_nullable
+              as int,
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as int,
+      width: width == freezed
+          ? _value.width
+          : width // ignore: cast_nullable_to_non_nullable
+              as int,
+      height: height == freezed
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as int,
+      owner: owner == freezed
+          ? _value.owner
+          : owner // ignore: cast_nullable_to_non_nullable
+              as String,
+      fileId: fileId == freezed
+          ? _value.fileId
+          : fileId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fileName: fileName == freezed
+          ? _value.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
+              as String,
+      timestamp: timestamp == freezed
+          ? _value.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
+              as String,
+      editedTimestamp: editedTimestamp == freezed
+          ? _value.editedTimestamp
+          : editedTimestamp // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_PictureEntity implements _PictureEntity {
+  _$_PictureEntity(
+      {required this.id,
+      required this.name,
+      required this.url,
+      required this.extension,
+      required this.mimetype,
+      required this.size,
+      required this.type,
+      required this.width,
+      required this.height,
+      required this.owner,
+      this.fileId,
+      required this.fileName,
+      required this.timestamp,
+      required this.editedTimestamp});
+
+  @override
+  final String id;
+  @override
+  final String name;
+  @override
+  final String url;
+  @override
+  final String extension;
+  @override
+  final String mimetype;
+  @override
+  final int size;
+  @override
+  final int type;
+  @override
+  final int width;
+  @override
+  final int height;
+  @override
+  final String owner;
+  @override
+  final String? fileId;
+  @override
+  final String fileName;
+  @override
+  final String timestamp;
+  @override
+  final String editedTimestamp;
+
+  @override
+  String toString() {
+    return 'PictureEntity(id: $id, name: $name, url: $url, extension: $extension, mimetype: $mimetype, size: $size, type: $type, width: $width, height: $height, owner: $owner, fileId: $fileId, fileName: $fileName, timestamp: $timestamp, editedTimestamp: $editedTimestamp)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_PictureEntity &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.url, url) &&
+            const DeepCollectionEquality().equals(other.extension, extension) &&
+            const DeepCollectionEquality().equals(other.mimetype, mimetype) &&
+            const DeepCollectionEquality().equals(other.size, size) &&
+            const DeepCollectionEquality().equals(other.type, type) &&
+            const DeepCollectionEquality().equals(other.width, width) &&
+            const DeepCollectionEquality().equals(other.height, height) &&
+            const DeepCollectionEquality().equals(other.owner, owner) &&
+            const DeepCollectionEquality().equals(other.fileId, fileId) &&
+            const DeepCollectionEquality().equals(other.fileName, fileName) &&
+            const DeepCollectionEquality().equals(other.timestamp, timestamp) &&
+            const DeepCollectionEquality()
+                .equals(other.editedTimestamp, editedTimestamp));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(url),
+      const DeepCollectionEquality().hash(extension),
+      const DeepCollectionEquality().hash(mimetype),
+      const DeepCollectionEquality().hash(size),
+      const DeepCollectionEquality().hash(type),
+      const DeepCollectionEquality().hash(width),
+      const DeepCollectionEquality().hash(height),
+      const DeepCollectionEquality().hash(owner),
+      const DeepCollectionEquality().hash(fileId),
+      const DeepCollectionEquality().hash(fileName),
+      const DeepCollectionEquality().hash(timestamp),
+      const DeepCollectionEquality().hash(editedTimestamp));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_PictureEntityCopyWith<_$_PictureEntity> get copyWith =>
+      __$$_PictureEntityCopyWithImpl<_$_PictureEntity>(this, _$identity);
+}
+
+abstract class _PictureEntity implements PictureEntity {
+  factory _PictureEntity(
+      {required final String id,
+      required final String name,
+      required final String url,
+      required final String extension,
+      required final String mimetype,
+      required final int size,
+      required final int type,
+      required final int width,
+      required final int height,
+      required final String owner,
+      final String? fileId,
+      required final String fileName,
+      required final String timestamp,
+      required final String editedTimestamp}) = _$_PictureEntity;
+
+  @override
+  String get id;
+  @override
+  String get name;
+  @override
+  String get url;
+  @override
+  String get extension;
+  @override
+  String get mimetype;
+  @override
+  int get size;
+  @override
+  int get type;
+  @override
+  int get width;
+  @override
+  int get height;
+  @override
+  String get owner;
+  @override
+  String? get fileId;
+  @override
+  String get fileName;
+  @override
+  String get timestamp;
+  @override
+  String get editedTimestamp;
+  @override
+  @JsonKey(ignore: true)
+  _$$_PictureEntityCopyWith<_$_PictureEntity> get copyWith =>
+      throw _privateConstructorUsedError;
 }

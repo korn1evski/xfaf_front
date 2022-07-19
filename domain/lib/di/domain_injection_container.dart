@@ -1,7 +1,10 @@
+import 'package:domain/modules/attachments/repository/attachments_repository.dart';
+import 'package:domain/modules/attachments/usecases/upload_files_use_case.dart';
 import 'package:domain/modules/authentication/repository/authentication_repository.dart';
 import 'package:domain/modules/authentication/usecases/get_tokens_usecase.dart';
 import 'package:domain/modules/authentication/usecases/login_use_case.dart';
 import 'package:domain/modules/chat/conversations/repository/conversations_repository.dart';
+import 'package:domain/modules/chat/conversations/usecases/create_group_conversation_usecase.dart';
 import 'package:domain/modules/chat/conversations/usecases/delete_conversation_member_usecase.dart';
 import 'package:domain/modules/chat/conversations/usecases/delete_conversation_usecase.dart';
 import 'package:domain/modules/chat/conversations/usecases/get_conversations_usecase.dart';
@@ -20,6 +23,7 @@ import 'package:domain/modules/current_user_session/usecases/remove_current_user
 import 'package:domain/modules/user/repository/user_repository.dart';
 import 'package:domain/modules/user/usecases/get_users_usecase.dart';
 import 'package:domain/modules/websocket/repository/websocket_repository.dart';
+import 'package:domain/modules/websocket/usecases/close_websocket_usecase.dart';
 import 'package:domain/modules/websocket/usecases/get_conversations_controller_usecase.dart';
 import 'package:domain/modules/websocket/usecases/get_messages_controller_usecase.dart';
 import 'package:domain/modules/websocket/usecases/start_websocket_usecase.dart';
@@ -47,6 +51,7 @@ Future<void> init() async {
   domainDi.registerLazySingleton<DeleteConversationMemberUseCase>(() => DeleteConversationMemberUseCase(conversationsRepository: domainDi<ConversationsRepository>()));
   domainDi.registerLazySingleton<DeleteConversationUseCase>(() => DeleteConversationUseCase(conversationsRepository: domainDi<ConversationsRepository>()));
   domainDi.registerLazySingleton<StartPrivateConversationUseCase>(() => StartPrivateConversationUseCase(conversationsRepository: domainDi<ConversationsRepository>()));
+  domainDi.registerLazySingleton<CreateGroupConversationUseCase>(() => CreateGroupConversationUseCase(conversationsRepository: domainDi<ConversationsRepository>()));
 
   //Room UseCases
   domainDi.registerLazySingleton<GetRoomMembersUseCase>(() => GetRoomMembersUseCase(roomRepository: domainDi<RoomRepository>()));
@@ -59,7 +64,11 @@ Future<void> init() async {
   domainDi.registerLazySingleton<StartWebSocketUseCase>(() => StartWebSocketUseCase(webSocketRepository: domainDi<WebSocketRepository>()));
   domainDi.registerLazySingleton<GetConversationsControllerUseCase>(() => GetConversationsControllerUseCase(webSocketRepository:  domainDi<WebSocketRepository>()));
   domainDi.registerLazySingleton<GetMessagesControllerUseCase>(() => GetMessagesControllerUseCase(webSocketRepository: domainDi<WebSocketRepository>()));
+  domainDi.registerLazySingleton<CloseWebSocketUseCase>(() => CloseWebSocketUseCase(webSocketRepository: domainDi<WebSocketRepository>()));
 
   //ChatUsers UseCases
   domainDi.registerLazySingleton<GetChatUsersUseCase>(() => GetChatUsersUseCase(chatUsersRepository: domainDi<ChatUsersRepository>()));
+
+  //Attachments UseCases
+  domainDi.registerLazySingleton<UploadFilesUseCase>(() => UploadFilesUseCase(attachmentsRepository: domainDi<AttachmentsRepository>()));
 }

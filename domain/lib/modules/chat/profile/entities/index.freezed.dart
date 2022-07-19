@@ -248,19 +248,19 @@ abstract class _ProfileEntity extends ProfileEntity {
   _ProfileEntity._() : super._();
 
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String get email => throw _privateConstructorUsedError;
+  String get email;
   @override
-  String get firstName => throw _privateConstructorUsedError;
+  String get firstName;
   @override
-  String get lastName => throw _privateConstructorUsedError;
+  String get lastName;
   @override
-  String? get photo => throw _privateConstructorUsedError;
+  String? get photo;
   @override
-  String get sso => throw _privateConstructorUsedError;
+  String get sso;
   @override
-  List<String> get keys => throw _privateConstructorUsedError;
+  List<String> get keys;
   @override
   @JsonKey(ignore: true)
   _$$_ProfileEntityCopyWith<_$_ProfileEntity> get copyWith =>

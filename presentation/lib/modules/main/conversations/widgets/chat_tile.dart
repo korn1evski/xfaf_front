@@ -15,14 +15,16 @@ import '../../../../constants/resources/help_functions.dart';
 import '../controllers/chats_controller.dart';
 
 class ChatTile extends StatelessWidget {
-  ChatTile({Key? key, required this.conversationEntity, this.onTap}) : super(key: key);
+  ChatTile({Key? key, required this.conversationEntity, this.onTap})
+      : super(key: key);
   final ConversationEntity conversationEntity;
   final Function()? onTap;
 
   final ChatsController chatsController = Get.find();
 
   String you() {
-    if (conversationEntity.message!.owner.id == chatsController.currentUserEntity!.id) {
+    if (conversationEntity.message!.owner.id ==
+        chatsController.currentUserEntity!.id) {
       return 'You: ';
     } else {
       return '';
@@ -31,40 +33,57 @@ class ChatTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final now = DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
+    final yesterday = DateTime(now.year, now.month, now.day - 1);
+    DateTime date = DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+        .parse(conversationEntity.editedTimestamp);
+    final dateToCheck = DateTime(date.year, date.month, date.day);
     return Slidable(
       endActionPane: ActionPane(
           extentRatio: 0.35,
-          motion: const ScrollMotion(), children: [
-        SlidableAction(
-          onPressed: (context) {},
-          backgroundColor: AppColors.authInputColor,
-          icon: Icons.more_horiz,
-          foregroundColor: AppColors.mainTextColor,
-        ),
-        SlidableAction(
-          onPressed: (context) async{
-            await chatsController.deleteConversation(conversationEntity);
-          },
-          backgroundColor: AppColors.authInputColor,
-          icon: Icons.delete,
-          foregroundColor: AppColors.notificationRed,
-        ),
-      ]),
+          motion: const ScrollMotion(),
+          children: [
+            SlidableAction(
+              onPressed: (context) {},
+              backgroundColor: AppColors.authInputColor,
+              icon: Icons.more_horiz,
+              foregroundColor: AppColors.mainTextColor,
+            ),
+            SlidableAction(
+              onPressed: (context) async {
+                await chatsController.deleteConversation(conversationEntity);
+              },
+              backgroundColor: AppColors.authInputColor,
+              icon: Icons.delete,
+              foregroundColor: AppColors.notificationRed,
+            ),
+          ]),
       child: InkWell(
         onTap: () {
-          final String conversationImg = getConversationImg(conversationEntity, chatsController.currentUserEntity!);
-          Get.toNamed(Routes.ROOM, arguments: {'conversationEntity': conversationEntity});
+          final String conversationImg = getConversationImg(
+              conversationEntity, chatsController.currentUserEntity!);
+          Get.toNamed(Routes.ROOM,
+              arguments: {'conversationEntity': conversationEntity});
           // chatsController.messagesSubscription.cancel();
         },
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 12.h),
           height: 64.h,
           width: double.maxFinite,
-          decoration: BoxDecoration(border: Border(bottom: BorderSide(width: 1, color: AppColors.mainBorderColor))),
+          decoration: BoxDecoration(
+              border: Border(
+                  bottom:
+                      BorderSide(width: 1, color: AppColors.mainBorderColor))),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              RoundedCachedImage(imgUrl: getConversationImg(conversationEntity, chatsController.currentUserEntity!)),
+              conversationEntity.type != 2
+                  ? RoundedCachedImage(
+                      imgUrl: getConversationImg(conversationEntity,
+                          chatsController.currentUserEntity!))
+                  : RoundedCachedImage(
+                      imgUrl: conversationEntity.picture?.url ?? ''),
               SizedBox(
                 width: 8.w,
               ),
@@ -76,7 +95,9 @@ class ChatTile extends StatelessWidget {
                   children: [
                     CommonText(
                       text: conversationEntity.type == 1
-                          ? givePrivateConversationName(chatsController.currentUserEntity!, conversationEntity)
+                          ? givePrivateConversationName(
+                              chatsController.currentUserEntity!,
+                              conversationEntity)
                           : conversationEntity.name,
                       size: 14,
                       lineHeight: 1.2,
@@ -103,7 +124,9 @@ class ChatTile extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  conversationEntity.unread != 0 ? RedCircle(number: conversationEntity.unread) : const SizedBox(),
+                  conversationEntity.unread != 0
+                      ? RedCircle(number: conversationEntity.unread)
+                      : const SizedBox(),
                   SizedBox(
                     height: 3.h,
                   ),
@@ -112,9 +135,13 @@ class ChatTile extends StatelessWidget {
                     child: Row(
                       children: [
                         CommonText(
-                          text: DateFormat.yMd().format(DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-                              .parse(conversationEntity.editedTimestamp)
-                              .add(const Duration(hours: 3))),
+                          text: dateToCheck == today
+                              ? DateFormat.Hm()
+                                  .format(date)
+                              : dateToCheck == yesterday
+                                  ? 'Yesterday'
+                                  : DateFormat.yMd().format(
+                                      date.add(const Duration(hours: 3))),
                           size: 12,
                           color: AppColors.labelColor,
                         )

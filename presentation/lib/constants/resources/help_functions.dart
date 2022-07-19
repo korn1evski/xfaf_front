@@ -1,8 +1,12 @@
+import 'dart:io';
+
 import 'package:domain/modules/chat/conversations/entities/index.dart';
 import 'package:domain/modules/chat/profile/entities/index.dart';
 import 'package:domain/modules/current_user_session/entities/index.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'colors.dart';
 
@@ -41,10 +45,15 @@ void showAreYouSure(String titleText, String mainText, Function()? onConfirm) {
       textConfirm: 'Let\'s go',
       confirmTextColor: Colors.white,
       buttonColor: AppColors.mainBlue,
-      onConfirm: onConfirm);
+      onConfirm: () async {
+        if (onConfirm != null) {
+          await onConfirm();
+        }
+      });
 }
 
-String getConversationImg(ConversationEntity conversationEntity, CurrentUserEntity currentUserEntity) {
+String getConversationImg(ConversationEntity conversationEntity,
+    CurrentUserEntity currentUserEntity) {
   String photo = '';
   if (conversationEntity.type == 1) {
     conversationEntity.members.forEach((member) {
@@ -58,7 +67,8 @@ String getConversationImg(ConversationEntity conversationEntity, CurrentUserEnti
   return photo;
 }
 
-String givePrivateConversationName(CurrentUserEntity currentUserEntity, ConversationEntity conversationEntity) {
+String givePrivateConversationName(CurrentUserEntity currentUserEntity,
+    ConversationEntity conversationEntity) {
   String result = '';
   if (conversationEntity.members.length == 1) {
     return conversationEntity.name;

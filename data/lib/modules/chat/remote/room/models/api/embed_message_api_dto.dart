@@ -4,7 +4,7 @@ part of room_models;
 class EmbedMessageApiDto with _$EmbedMessageApiDto {
   factory EmbedMessageApiDto({
     @JsonKey(name: '_id') required String id,
-    required List<AttachmentApiDto> attachments,
+    required List<String> attachments,
     required String content,
     required String conversation,
     @JsonKey(name: 'is_poll') required bool isPoll,

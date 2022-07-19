@@ -56,6 +56,13 @@ class AppColors {
     return mainController.isDarkMode.value ? Color(0xFF005FFF) : Color(0xFFFFFFFF);
   }
 
+  static Color get bigMessageColor{
+    MainController mainController = Get.find();
+    return mainController.isDarkMode.value ? Color(0xFF2D2F2F) : Color(0xFFDBDBDB);
+  }
+
+
+
 
 
   static final mainBlue = Color(0xFF005FFF);

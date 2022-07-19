@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:data/modules/chat/remote/conversations/models/index.dart';
 import 'package:data/modules/chat/remote/profile/models/mappers/profile_mapper.dart';
 import 'package:data/modules/chat/remote/room/models/index.dart';
@@ -7,7 +9,8 @@ import 'package:domain/modules/chat/profile/entities/index.dart';
 import 'package:domain/modules/chat/room/entities/index.dart';
 
 class ConversationsMapper {
-  List<ConversationEntity> listConversationsApiToEntities(List<ConversationApiDto> conversationDtos) {
+  List<ConversationEntity> listConversationsApiToEntities(
+      List<ConversationApiDto> conversationDtos) {
     List<ConversationEntity> conversationEntities = [];
     conversationDtos.forEach((element) {
       final List<ProfileEntity> members = [];
@@ -24,7 +27,9 @@ class ConversationsMapper {
           members: members,
           membersCount: element.membersCount,
           owner: ProfileMapper().profileEntityFromApiDto(element.owner),
-          message: element.message != null ? RoomMapper().embedMessageEntityFromDto(element.message!) : null,
+          picture: element.picture != null ? pictureEntityFromDto(element.picture!) : null,
+          message: element.message != null ? RoomMapper()
+              .embedMessageEntityFromDto(element.message!) : null,
           timestamp: element.timestamp,
           editedTimestamp: element.editedTimestamp));
     });
@@ -32,22 +37,30 @@ class ConversationsMapper {
   }
 
   ConversationEntity conversationEntityFromDto(ConversationApiDto element) {
+    PictureEntity? pictureEntity;
+    if(element.picture != null){
+      pictureEntity = pictureEntityFromDto(element.picture!);
+    }
     return ConversationEntity(
+
         id: element.id,
         name: element.name,
         unread: element.unread,
+        picture: pictureEntity ,
         pictureUrl: element.pictureUrl,
         type: element.type,
         public: element.public,
         members: ProfileMapper().listProfileToEntity(element.members),
         membersCount: element.membersCount,
         owner: ProfileMapper().profileEntityFromApiDto(element.owner),
-        message: element.message != null ? RoomMapper().embedMessageEntityFromDto(element.message!) : null,
+        message: element.message != null ? RoomMapper()
+            .embedMessageEntityFromDto(element.message!) : null,
         timestamp: element.timestamp,
         editedTimestamp: element.editedTimestamp);
   }
 
-  ConversationInsideMessageEntity conversationInsideMessageToEntity(ConversationInsideMessageApiDto element) {
+  ConversationInsideMessageEntity conversationInsideMessageToEntity(
+      ConversationInsideMessageApiDto element) {
     return ConversationInsideMessageEntity(
         id: element.id,
         name: element.name,
@@ -63,7 +76,8 @@ class ConversationsMapper {
         editedTimestamp: element.editedTimestamp);
   }
 
-  ConversationWebSocketEntity conversationWebSocketToEntity(ConversationWebSocketApiDto apiDto) {
+  ConversationWebSocketEntity conversationWebSocketToEntity(
+      ConversationWebSocketApiDto apiDto) {
     return ConversationWebSocketEntity(
         id: apiDto.id,
         name: apiDto.name,
@@ -79,10 +93,12 @@ class ConversationsMapper {
         editedTimestamp: apiDto.editedTimestamp);
   }
 
-  ConversationEventEntity conversationEventToEntity(ConversationEventApiDto conversationEventApiDto) {
+  ConversationEventEntity conversationEventToEntity(
+      ConversationEventApiDto conversationEventApiDto) {
     return ConversationEventEntity(
         event: conversationEventApiDto.event,
-        conversation: conversationWebSocketToEntity(conversationEventApiDto.conversation));
+        conversation: conversationWebSocketToEntity(
+            conversationEventApiDto.conversation));
   }
 
   ConversationEntity conversationWebSocketDtoToConversationEntity(
@@ -90,7 +106,9 @@ class ConversationsMapper {
     return ConversationEntity(
         id: conversationWebSocketEntity.id,
         message: EmbedMessageEntity(
-            id: conversationWebSocketEntity.message != null ? conversationWebSocketEntity.message! : '',
+            id: conversationWebSocketEntity.message != null
+                ? conversationWebSocketEntity.message!
+                : '',
             attachments: [],
             content: message,
             conversation: conversationWebSocketEntity.id,
@@ -110,5 +128,32 @@ class ConversationsMapper {
         owner: conversationWebSocketEntity.owner,
         timestamp: conversationWebSocketEntity.timestamp,
         editedTimestamp: conversationWebSocketEntity.editedTimestamp);
+  }
+
+  PictureEntity pictureEntityFromDto(PictureApiDto pictureDto) {
+    return PictureEntity(id: pictureDto.id,
+        name: pictureDto.name,
+        url: pictureDto.url,
+        extension: pictureDto.extension,
+        mimetype: pictureDto.mimetype,
+        size: pictureDto.size,
+        type: pictureDto.type,
+        width: pictureDto.width,
+        height: pictureDto.height,
+        owner: pictureDto.owner,
+        fileId: pictureDto.fileId,
+        fileName: pictureDto.fileName,
+        timestamp: pictureDto.timestamp,
+        editedTimestamp: pictureDto.editedTimestamp);
+  }
+
+  List<PictureEntity> pictureListFromDto(List<PictureApiDto> pictures){
+    List<PictureEntity> picturesEntities = [];
+    pictures.forEach((element) {
+      picturesEntities.add(pictureEntityFromDto(element));
+    });
+
+    return picturesEntities;
+
   }
 }
