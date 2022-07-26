@@ -1067,6 +1067,7 @@ mixin _$ConversationWebSocketApiDto {
   String get name => throw _privateConstructorUsedError;
   @JsonKey(name: 'picture_url')
   String get pictureUrl => throw _privateConstructorUsedError;
+  String? get picture => throw _privateConstructorUsedError;
   int get type => throw _privateConstructorUsedError;
   bool get public => throw _privateConstructorUsedError;
   List<ProfileApiDto> get members => throw _privateConstructorUsedError;
@@ -1095,6 +1096,7 @@ abstract class $ConversationWebSocketApiDtoCopyWith<$Res> {
       {@JsonKey(name: '_id') String id,
       String name,
       @JsonKey(name: 'picture_url') String pictureUrl,
+      String? picture,
       int type,
       bool public,
       List<ProfileApiDto> members,
@@ -1122,6 +1124,7 @@ class _$ConversationWebSocketApiDtoCopyWithImpl<$Res>
     Object? id = freezed,
     Object? name = freezed,
     Object? pictureUrl = freezed,
+    Object? picture = freezed,
     Object? type = freezed,
     Object? public = freezed,
     Object? members = freezed,
@@ -1145,6 +1148,10 @@ class _$ConversationWebSocketApiDtoCopyWithImpl<$Res>
           ? _value.pictureUrl
           : pictureUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      picture: picture == freezed
+          ? _value.picture
+          : picture // ignore: cast_nullable_to_non_nullable
+              as String?,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -1204,6 +1211,7 @@ abstract class _$$_ConversationWebSocketApiDtoCopyWith<$Res>
       {@JsonKey(name: '_id') String id,
       String name,
       @JsonKey(name: 'picture_url') String pictureUrl,
+      String? picture,
       int type,
       bool public,
       List<ProfileApiDto> members,
@@ -1236,6 +1244,7 @@ class __$$_ConversationWebSocketApiDtoCopyWithImpl<$Res>
     Object? id = freezed,
     Object? name = freezed,
     Object? pictureUrl = freezed,
+    Object? picture = freezed,
     Object? type = freezed,
     Object? public = freezed,
     Object? members = freezed,
@@ -1259,6 +1268,10 @@ class __$$_ConversationWebSocketApiDtoCopyWithImpl<$Res>
           ? _value.pictureUrl
           : pictureUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      picture: picture == freezed
+          ? _value.picture
+          : picture // ignore: cast_nullable_to_non_nullable
+              as String?,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -1306,6 +1319,7 @@ class _$_ConversationWebSocketApiDto implements _ConversationWebSocketApiDto {
       {@JsonKey(name: '_id') required this.id,
       required this.name,
       @JsonKey(name: 'picture_url') required this.pictureUrl,
+      this.picture,
       required this.type,
       required this.public,
       required final List<ProfileApiDto> members,
@@ -1328,6 +1342,8 @@ class _$_ConversationWebSocketApiDto implements _ConversationWebSocketApiDto {
   @override
   @JsonKey(name: 'picture_url')
   final String pictureUrl;
+  @override
+  final String? picture;
   @override
   final int type;
   @override
@@ -1356,7 +1372,7 @@ class _$_ConversationWebSocketApiDto implements _ConversationWebSocketApiDto {
 
   @override
   String toString() {
-    return 'ConversationWebSocketApiDto(id: $id, name: $name, pictureUrl: $pictureUrl, type: $type, public: $public, members: $members, unread: $unread, membersCount: $membersCount, owner: $owner, message: $message, timestamp: $timestamp, editedTimestamp: $editedTimestamp)';
+    return 'ConversationWebSocketApiDto(id: $id, name: $name, pictureUrl: $pictureUrl, picture: $picture, type: $type, public: $public, members: $members, unread: $unread, membersCount: $membersCount, owner: $owner, message: $message, timestamp: $timestamp, editedTimestamp: $editedTimestamp)';
   }
 
   @override
@@ -1368,6 +1384,7 @@ class _$_ConversationWebSocketApiDto implements _ConversationWebSocketApiDto {
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
                 .equals(other.pictureUrl, pictureUrl) &&
+            const DeepCollectionEquality().equals(other.picture, picture) &&
             const DeepCollectionEquality().equals(other.type, type) &&
             const DeepCollectionEquality().equals(other.public, public) &&
             const DeepCollectionEquality().equals(other._members, _members) &&
@@ -1388,6 +1405,7 @@ class _$_ConversationWebSocketApiDto implements _ConversationWebSocketApiDto {
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(pictureUrl),
+      const DeepCollectionEquality().hash(picture),
       const DeepCollectionEquality().hash(type),
       const DeepCollectionEquality().hash(public),
       const DeepCollectionEquality().hash(_members),
@@ -1418,6 +1436,7 @@ abstract class _ConversationWebSocketApiDto
           required final String name,
           @JsonKey(name: 'picture_url')
               required final String pictureUrl,
+          final String? picture,
           required final int type,
           required final bool public,
           required final List<ProfileApiDto> members,
@@ -1442,6 +1461,8 @@ abstract class _ConversationWebSocketApiDto
   @override
   @JsonKey(name: 'picture_url')
   String get pictureUrl;
+  @override
+  String? get picture;
   @override
   int get type;
   @override

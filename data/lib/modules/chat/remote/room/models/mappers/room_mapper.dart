@@ -1,3 +1,4 @@
+import 'package:data/modules/attachments/models/mappers/attachments_mapper.dart';
 import 'package:data/modules/chat/remote/conversations/models/index.dart';
 import 'package:data/modules/chat/remote/conversations/models/mappers/conversations_mapper.dart';
 import 'package:data/modules/chat/remote/profile/models/mappers/profile_mapper.dart';
@@ -73,7 +74,7 @@ class RoomMapper {
   MessageEntity messageFromDto(MessageApiDto messageApiDto) {
     return MessageEntity(id: messageApiDto.id,
         after: messageApiDto.after,
-        attachments: attachmentListToEntity(messageApiDto.attachments),
+        attachments: AttachmentsMapper().pictureListFromDto(messageApiDto.attachments),
         before: messageApiDto.before,
         timestamp: messageApiDto.timestamp,
         content: messageApiDto.content,

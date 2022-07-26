@@ -41,6 +41,7 @@ class CustomAppBar extends StatelessWidget {
             width: double.maxFinite,
             height: 56.h,
             decoration: BoxDecoration(
+              color: AppColors.backColor,
                 border: Border(
                     bottom: BorderSide(
                         width: 1, color: AppColors.mainBorderColor))),

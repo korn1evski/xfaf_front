@@ -105,6 +105,7 @@ _$_ConversationWebSocketApiDto _$$_ConversationWebSocketApiDtoFromJson(
       id: json['_id'] as String,
       name: json['name'] as String,
       pictureUrl: json['picture_url'] as String,
+      picture: json['picture'] as String?,
       type: json['type'] as int,
       public: json['public'] as bool,
       members: (json['members'] as List<dynamic>)
@@ -124,6 +125,7 @@ Map<String, dynamic> _$$_ConversationWebSocketApiDtoToJson(
       '_id': instance.id,
       'name': instance.name,
       'picture_url': instance.pictureUrl,
+      'picture': instance.picture,
       'type': instance.type,
       'public': instance.public,
       'members': instance.members,

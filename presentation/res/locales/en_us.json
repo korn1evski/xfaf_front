@@ -163,5 +163,9 @@
   "letsStartChatting" : "Let\\'s start chatting!",
   "chat" : "chat",
   "theBeginningOfConversation" : "the beginning of conversations",
-  "areYouSureDeletingConversation" : "Are you sure about deleting the conversation?"
+  "areYouSureDeletingConversation" : "Are you sure about deleting the conversation?",
+  "yesterday" : "yesterday",
+  "you" : "you",
+  "members" : "members",
+  "areYouSureDeletingThisMember" : "Are you sure about deleting this member?"
 }

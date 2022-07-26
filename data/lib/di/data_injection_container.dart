@@ -16,6 +16,10 @@ import 'package:data/modules/chat/remote/room/repository/room_repository_impl.da
 import 'package:data/modules/chat/remote/room/sources/room_data_source.dart';
 import 'package:data/modules/chat_users/repository/chat_users_repository_impl.dart';
 import 'package:data/modules/chat_users/sources/chat_users_data_source.dart';
+import 'package:data/modules/common/repository/files_repository_impl.dart';
+import 'package:data/modules/common/repository/shared_pref_repository_impl.dart';
+import 'package:data/modules/common/sources/files_data_source.dart';
+import 'package:data/modules/common/sources/shared_pref_data_source.dart';
 import 'package:data/modules/current_user_session/repository/current_user_repository_impl.dart';
 import 'package:data/modules/current_user_session/sources/current_user_local_data_source.dart';
 import 'package:data/modules/user/repository/user_repository_impl.dart';
@@ -31,6 +35,8 @@ import 'package:domain/modules/chat/conversations/repository/conversations_repos
 import 'package:domain/modules/chat/profile/repository/profile_repository.dart';
 import 'package:domain/modules/chat/room/repository/room_repository.dart';
 import 'package:domain/modules/chat_users/repository/chat_users_repository.dart';
+import 'package:domain/modules/common/repository/files_repository.dart';
+import 'package:domain/modules/common/repository/shared_pref_repository.dart';
 import 'package:domain/modules/current_user_session/repository/current_user_repository.dart';
 import 'package:domain/modules/user/repository/user_repository.dart';
 import 'package:domain/modules/websocket/repository/websocket_repository.dart';
@@ -73,6 +79,8 @@ Future<void> init({Function(Failure error)? onError}) async {
   dataDi.registerLazySingleton<WebSocketDataSource>(() => WebSocketDataSourceImpl(manageTokensDataSource: dataDi<ManageTokensDataSource>()));
   dataDi.registerLazySingleton<ChatUsersDataSource>(() => ChatUsersDataSourceImpl(dioClient: _apiClient));
   dataDi.registerLazySingleton<AttachmentsDataSource>(() => AttachmentsDataSourceImpl(dioClient: _apiClient));
+  dataDi.registerLazySingleton<SharedPrefDataSource>(() => SharedPrefDataSourceImpl(sharedPreferences: sharedPrefStorage));
+  dataDi.registerLazySingleton<FilesDataSource>(() => FilesDataSourceImpl(dio: _apiClient));
 
 
   //Adding auth interceptors in case at least refreshToken is saved in localStorage
@@ -97,6 +105,8 @@ Future<void> init({Function(Failure error)? onError}) async {
   dataDi.registerLazySingleton<WebSocketRepository>(() => WebSocketRepositoryImpl(webSocketDataSource: dataDi<WebSocketDataSource>()));
   dataDi.registerLazySingleton<ChatUsersRepository>(() => ChatUsersRepositoryImpl(chatUsersDataSource: dataDi<ChatUsersDataSource>()));
   dataDi.registerLazySingleton<AttachmentsRepository>(() => AttachmentsRepositoryImpl(attachmentsDataSource: dataDi<AttachmentsDataSource>()));
+  dataDi.registerLazySingleton<SharedPrefRepository>(() => SharedPrefRepositoryImpl(sharedPrefDataSource: dataDi<SharedPrefDataSource>()));
+  dataDi.registerLazySingleton<FilesRepository>(() => FilesRepositoryImpl(filesDataSource: dataDi<FilesDataSource>()));
 
 
   return;

@@ -6,11 +6,13 @@ import 'package:dio/dio.dart';
 import 'package:domain/core/errors/failure.dart';
 import 'package:domain/modules/chat/conversations/entities/index.dart';
 import 'package:domain/modules/chat/conversations/repository/conversations_repository.dart';
+import 'package:domain/modules/chat/conversations/usecases/add_members_usecase.dart';
 import 'package:domain/modules/chat/conversations/usecases/create_group_conversation_usecase.dart';
 import 'package:domain/modules/chat/conversations/usecases/delete_conversation_member_usecase.dart';
 import 'package:domain/modules/chat/conversations/usecases/delete_conversation_usecase.dart';
 import 'package:domain/modules/chat/conversations/usecases/get_conversations_usecase.dart';
 import 'package:domain/modules/chat/conversations/usecases/start_private_conversation_usecase.dart';
+import 'package:domain/modules/chat/profile/entities/index.dart';
 
 class ConversationsRepositoryImpl extends ConversationsRepository {
   final ConversationsDataSource conversationsDataSource;
@@ -77,6 +79,19 @@ class ConversationsRepositoryImpl extends ConversationsRepository {
     try {
       final response = await conversationsDataSource.createGroupConversation(params);
       return Right(ConversationsMapper().conversationWebSocketToEntity(response));
+    } catch (e) {
+      if (e is DioError) {
+        return Left(ServerFailure(errorObject: e.response!.data));
+      }
+    }
+    return Left(OtherFailure());
+  }
+
+  @override
+  Future<Either<Failure, List<ProfileEntity>>> addMembers(AddMembersParams params) async{
+    try {
+      final response = await conversationsDataSource.addMembers(params);
+      return Right(ProfileMapper().listProfileToEntity(response));
     } catch (e) {
       if (e is DioError) {
         return Left(ServerFailure(errorObject: e.response!.data));

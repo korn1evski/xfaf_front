@@ -807,7 +807,7 @@ mixin _$MessageEntity {
   @JsonKey(name: '_id')
   String get id => throw _privateConstructorUsedError;
   bool get after => throw _privateConstructorUsedError;
-  List<AttachmentEntity> get attachments => throw _privateConstructorUsedError;
+  List<PictureEntity> get attachments => throw _privateConstructorUsedError;
   bool get before => throw _privateConstructorUsedError;
   String get timestamp => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
@@ -835,7 +835,7 @@ abstract class $MessageEntityCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: '_id') String id,
       bool after,
-      List<AttachmentEntity> attachments,
+      List<PictureEntity> attachments,
       bool before,
       String timestamp,
       String content,
@@ -892,7 +892,7 @@ class _$MessageEntityCopyWithImpl<$Res>
       attachments: attachments == freezed
           ? _value.attachments
           : attachments // ignore: cast_nullable_to_non_nullable
-              as List<AttachmentEntity>,
+              as List<PictureEntity>,
       before: before == freezed
           ? _value.before
           : before // ignore: cast_nullable_to_non_nullable
@@ -974,7 +974,7 @@ abstract class _$$_MessageEntityCopyWith<$Res>
   $Res call(
       {@JsonKey(name: '_id') String id,
       bool after,
-      List<AttachmentEntity> attachments,
+      List<PictureEntity> attachments,
       bool before,
       String timestamp,
       String content,
@@ -1035,7 +1035,7 @@ class __$$_MessageEntityCopyWithImpl<$Res>
       attachments: attachments == freezed
           ? _value._attachments
           : attachments // ignore: cast_nullable_to_non_nullable
-              as List<AttachmentEntity>,
+              as List<PictureEntity>,
       before: before == freezed
           ? _value.before
           : before // ignore: cast_nullable_to_non_nullable
@@ -1094,7 +1094,7 @@ class _$_MessageEntity implements _MessageEntity {
   _$_MessageEntity(
       {@JsonKey(name: '_id') required this.id,
       required this.after,
-      required final List<AttachmentEntity> attachments,
+      required final List<PictureEntity> attachments,
       required this.before,
       required this.timestamp,
       required this.content,
@@ -1116,9 +1116,9 @@ class _$_MessageEntity implements _MessageEntity {
   final String id;
   @override
   final bool after;
-  final List<AttachmentEntity> _attachments;
+  final List<PictureEntity> _attachments;
   @override
-  List<AttachmentEntity> get attachments {
+  List<PictureEntity> get attachments {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_attachments);
   }
@@ -1217,7 +1217,7 @@ abstract class _MessageEntity implements MessageEntity {
   factory _MessageEntity(
       {@JsonKey(name: '_id') required final String id,
       required final bool after,
-      required final List<AttachmentEntity> attachments,
+      required final List<PictureEntity> attachments,
       required final bool before,
       required final String timestamp,
       required final String content,
@@ -1237,7 +1237,7 @@ abstract class _MessageEntity implements MessageEntity {
   @override
   bool get after;
   @override
-  List<AttachmentEntity> get attachments;
+  List<PictureEntity> get attachments;
   @override
   bool get before;
   @override

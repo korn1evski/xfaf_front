@@ -12,6 +12,8 @@ abstract class Routes {
   static const NEWCONVERSATION = _Paths.NEWCONVERSATION;
   static const GROUPINITIALSETTINGS = _Paths.GROUPINITIALSETTINGS;
   static const GROUPMEMBERS = _Paths.GROUPMEMBERS;
+  static const GROUPINFO = _Paths.GROUPINFO;
+  static const ADDMEMBERS = _Paths.ADDMEMBERS;
   Routes._();
   static String LOGIN_THEN(String afterSuccessfulLogin) =>
       '$LOGIN?then=${Uri.encodeQueryComponent(afterSuccessfulLogin)}';
@@ -26,4 +28,6 @@ abstract class _Paths {
   static const NEWCONVERSATION = '/newConversation';
   static const GROUPINITIALSETTINGS = '/groupInitialSettings';
   static const GROUPMEMBERS = '/groupMembers';
+  static const GROUPINFO = '/groupInfo';
+  static const ADDMEMBERS = '/addMembers';
 }

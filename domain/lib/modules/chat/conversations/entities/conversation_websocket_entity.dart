@@ -6,6 +6,7 @@ class ConversationWebSocketEntity with _$ConversationWebSocketEntity {
     required String id,
     required String name,
     required String pictureUrl,
+    String? picture,
     required int type,
     required bool public,
     required List<ProfileEntity> members,

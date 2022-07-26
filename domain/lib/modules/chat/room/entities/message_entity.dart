@@ -5,7 +5,7 @@ class MessageEntity with _$MessageEntity {
   factory MessageEntity({
     @JsonKey(name: '_id') required String id,
     required bool after,
-    required List<AttachmentEntity> attachments,
+    required List<PictureEntity> attachments,
     required bool before,
     required String timestamp,
     required String content,

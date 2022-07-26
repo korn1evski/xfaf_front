@@ -111,7 +111,7 @@ _$_MessageApiDto _$$_MessageApiDtoFromJson(Map<String, dynamic> json) =>
       id: json['_id'] as String,
       after: json['after'] as bool,
       attachments: (json['attachments'] as List<dynamic>)
-          .map((e) => AttachmentApiDto.fromJson(e as Map<String, dynamic>))
+          .map((e) => PictureApiDto.fromJson(e as Map<String, dynamic>))
           .toList(),
       before: json['before'] as bool,
       timestamp: json['timestamp'] as String,

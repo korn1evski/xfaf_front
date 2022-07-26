@@ -6,6 +6,7 @@ class ConversationWebSocketApiDto with _$ConversationWebSocketApiDto {
     @JsonKey(name: '_id') required String id,
     required String name,
     @JsonKey(name: 'picture_url') required String pictureUrl,
+    String? picture,
     required int type,
     required bool public,
     required List<ProfileApiDto> members,

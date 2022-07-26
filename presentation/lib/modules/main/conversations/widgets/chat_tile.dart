@@ -1,9 +1,10 @@
+import 'package:chat/generated/locale_keys.loc.dart';
 import 'package:domain/modules/chat/conversations/entities/index.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' hide Trans;
 import 'package:chat/common/widgets/common_text.dart';
 import 'package:chat/common/widgets/red_circle.dart';
 import 'package:chat/common/widgets/round_cached_image.dart';
@@ -25,7 +26,7 @@ class ChatTile extends StatelessWidget {
   String you() {
     if (conversationEntity.message!.owner.id ==
         chatsController.currentUserEntity!.id) {
-      return 'You: ';
+      return '${LocaleKeys.you.tr().capitalize!}: ';
     } else {
       return '';
     }
@@ -137,9 +138,9 @@ class ChatTile extends StatelessWidget {
                         CommonText(
                           text: dateToCheck == today
                               ? DateFormat.Hm()
-                                  .format(date)
+                                  .format(date.add(const Duration(hours: 3)))
                               : dateToCheck == yesterday
-                                  ? 'Yesterday'
+                                  ? LocaleKeys.yesterday.tr().capitalize!
                                   : DateFormat.yMd().format(
                                       date.add(const Duration(hours: 3))),
                           size: 12,

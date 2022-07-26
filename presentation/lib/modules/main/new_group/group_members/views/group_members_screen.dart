@@ -106,6 +106,8 @@ class _GroupMembersScreenState extends BasePageState<GroupMembersScreen> {
                                                 .usersList[index].id);
                                       }
                                     },
+                                    switchVal: groupMembersController.selectedUsersId.contains(groupMembersController
+                                        .usersList[index].id),
                                   );
                                 },
                               ),

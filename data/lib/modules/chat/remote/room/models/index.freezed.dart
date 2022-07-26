@@ -1193,7 +1193,7 @@ mixin _$MessageApiDto {
   @JsonKey(name: '_id')
   String get id => throw _privateConstructorUsedError;
   bool get after => throw _privateConstructorUsedError;
-  List<AttachmentApiDto> get attachments => throw _privateConstructorUsedError;
+  List<PictureApiDto> get attachments => throw _privateConstructorUsedError;
   bool get before => throw _privateConstructorUsedError;
   String get timestamp => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
@@ -1224,7 +1224,7 @@ abstract class $MessageApiDtoCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: '_id') String id,
       bool after,
-      List<AttachmentApiDto> attachments,
+      List<PictureApiDto> attachments,
       bool before,
       String timestamp,
       String content,
@@ -1281,7 +1281,7 @@ class _$MessageApiDtoCopyWithImpl<$Res>
       attachments: attachments == freezed
           ? _value.attachments
           : attachments // ignore: cast_nullable_to_non_nullable
-              as List<AttachmentApiDto>,
+              as List<PictureApiDto>,
       before: before == freezed
           ? _value.before
           : before // ignore: cast_nullable_to_non_nullable
@@ -1363,7 +1363,7 @@ abstract class _$$_MessageApiDtoCopyWith<$Res>
   $Res call(
       {@JsonKey(name: '_id') String id,
       bool after,
-      List<AttachmentApiDto> attachments,
+      List<PictureApiDto> attachments,
       bool before,
       String timestamp,
       String content,
@@ -1424,7 +1424,7 @@ class __$$_MessageApiDtoCopyWithImpl<$Res>
       attachments: attachments == freezed
           ? _value._attachments
           : attachments // ignore: cast_nullable_to_non_nullable
-              as List<AttachmentApiDto>,
+              as List<PictureApiDto>,
       before: before == freezed
           ? _value.before
           : before // ignore: cast_nullable_to_non_nullable
@@ -1483,7 +1483,7 @@ class _$_MessageApiDto implements _MessageApiDto {
   _$_MessageApiDto(
       {@JsonKey(name: '_id') required this.id,
       required this.after,
-      required final List<AttachmentApiDto> attachments,
+      required final List<PictureApiDto> attachments,
       required this.before,
       required this.timestamp,
       required this.content,
@@ -1508,9 +1508,9 @@ class _$_MessageApiDto implements _MessageApiDto {
   final String id;
   @override
   final bool after;
-  final List<AttachmentApiDto> _attachments;
+  final List<PictureApiDto> _attachments;
   @override
-  List<AttachmentApiDto> get attachments {
+  List<PictureApiDto> get attachments {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_attachments);
   }
@@ -1618,7 +1618,7 @@ abstract class _MessageApiDto implements MessageApiDto {
       {@JsonKey(name: '_id')
           required final String id,
       required final bool after,
-      required final List<AttachmentApiDto> attachments,
+      required final List<PictureApiDto> attachments,
       required final bool before,
       required final String timestamp,
       required final String content,
@@ -1643,7 +1643,7 @@ abstract class _MessageApiDto implements MessageApiDto {
   @override
   bool get after;
   @override
-  List<AttachmentApiDto> get attachments;
+  List<PictureApiDto> get attachments;
   @override
   bool get before;
   @override

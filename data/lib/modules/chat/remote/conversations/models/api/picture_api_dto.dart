@@ -25,12 +25,12 @@ class PictureApiDto with _$PictureApiDto {
 
 class Attributes {
   Attributes({
-    required this.width,
-    required this.height,
+    this.width,
+    this.height,
   });
 
-  int width;
-  int height;
+  int? width;
+  int? height;
 
   factory Attributes.fromJson(Map<String, dynamic> json) => Attributes(
     width: json["width"],

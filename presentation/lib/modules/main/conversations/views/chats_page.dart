@@ -32,8 +32,10 @@ class ChatsPageState extends BasePageState<ChatsPage> {
     chatsController.isLoading.listen((value) {
       controller.isLoading.value = value;
     });
-    chatsController.initialLoading();
-    chatsController.getConversations();
+    WidgetsBinding.instance.addPostFrameCallback((_){
+      chatsController.initialLoading();
+      chatsController.getConversations();
+    });
   }
 
   @override

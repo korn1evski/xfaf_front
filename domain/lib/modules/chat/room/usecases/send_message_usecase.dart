@@ -17,7 +17,8 @@ class SendMessageUseCase extends UseCase<MessageEntity, SendMessageParams> {
 }
 
 class SendMessageParams {
-  SendMessageParams({required this.conversationId, required this.message});
+  SendMessageParams({required this.conversationId, required this.message, required this.attachments});
   final String conversationId;
   final String message;
+  final List<String> attachments;
 }

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:domain/modules/chat/conversations/entities/index.dart';
 import 'package:domain/modules/chat/profile/entities/index.dart';
+import 'package:domain/modules/chat/room/entities/index.dart';
 import 'package:domain/modules/current_user_session/entities/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -90,4 +91,19 @@ String returnRoomsTextEvent(String text) {
               ? 'Conversation was left by a member'
               : '';
   return result;
+}
+
+void changeMembersCount(String text, Rx<int> membersCount){
+  if(text == 'CONVERSATION_MEMBER_CREATE'){
+    membersCount.value+= 1;
+  }
+  if(text == 'CONVERSATION_MEMBER_DELETE'){
+    membersCount.value-=1;
+  }
+}
+
+void closeRoomWhenWeAreDeleted(ConversationEventEntity conversationEventEntity, String currentUserEntityId){
+  if(conversationEventEntity.event == 'CONVERSATION_MEMBER_DELETE' && conversationEventEntity.conversation.members[0].id == currentUserEntityId){
+    Get.back();
+  }
 }

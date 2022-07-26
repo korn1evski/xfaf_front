@@ -166,5 +166,9 @@ abstract class  LocaleKeys {
   static const chat = 'chat';
   static const theBeginningOfConversation = 'theBeginningOfConversation';
   static const areYouSureDeletingConversation = 'areYouSureDeletingConversation';
+  static const yesterday = 'yesterday';
+  static const you = 'you';
+  static const members = 'members';
+  static const areYouSureDeletingThisMember = 'areYouSureDeletingThisMember';
 
 }

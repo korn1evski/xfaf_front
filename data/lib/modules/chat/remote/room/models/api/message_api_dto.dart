@@ -5,7 +5,7 @@ class MessageApiDto with _$MessageApiDto {
   factory MessageApiDto({
     @JsonKey(name: '_id') required String id,
     required bool after,
-    required List<AttachmentApiDto> attachments,
+    required List<PictureApiDto> attachments,
     required bool before,
     required String timestamp,
     required String content,

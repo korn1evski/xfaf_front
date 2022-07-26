@@ -1,15 +1,23 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:chat/common/widgets/gallery_widget.dart';
+import 'package:chat/common/widgets/open_photo_widget.dart';
 import 'package:chat/common/widgets/round_cached_image.dart';
+import 'package:chat/modules/main/chat_room/controllers/chat_room_controller.dart';
+import 'package:chat/modules/main/chat_room/widgets/file_preview.dart';
+import 'package:domain/modules/chat/conversations/entities/index.dart';
 import 'package:domain/modules/chat/profile/entities/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:chat/common/widgets/common_text.dart';
 import 'package:chat/constants/resources/colors.dart';
 import 'package:chat/constants/resources/help_functions.dart';
+import 'package:get/get.dart';
+import 'package:open_file/open_file.dart';
 
 import '../../../../constants/app_constants.dart';
 
 class BubbleWidget extends StatelessWidget {
-  const BubbleWidget(
+  BubbleWidget(
       {Key? key,
       required this.sentByMe,
       required this.text,
@@ -18,8 +26,8 @@ class BubbleWidget extends StatelessWidget {
       this.isFirst = false,
       this.isLast = false,
       this.owner,
-      this.isGroup
-      })
+      required this.isGroup,
+      required this.attachments,})
       : super(key: key);
   final bool sentByMe;
   final bool isFirst;
@@ -28,7 +36,10 @@ class BubbleWidget extends StatelessWidget {
   final DateTime date;
   final bool isNotification;
   final ProfileEntity? owner;
-  final isGroup;
+  final bool isGroup;
+  final List<PictureEntity> attachments;
+
+  final ChatRoomController chatRoomController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -63,8 +74,9 @@ class BubbleWidget extends StatelessWidget {
             child: Stack(
               children: [
                 Padding(
-                  padding:
-                      sentByMe || !isGroup ? EdgeInsets.zero : EdgeInsets.only(left: 27.w),
+                  padding: sentByMe || !isGroup
+                      ? EdgeInsets.zero
+                      : EdgeInsets.only(left: 27.w),
                   child: Card(
                     color: Colors.transparent,
                     shadowColor: Colors.transparent,
@@ -110,6 +122,51 @@ class BubbleWidget extends StatelessWidget {
                                       ),
                                     ],
                                   )
+                                : const SizedBox(),
+                            attachments.isNotEmpty
+                                ? GridView.builder(
+                                    padding: text.isNotEmpty
+                                        ? EdgeInsets.only(bottom: 6.h)
+                                        : EdgeInsets.zero,
+                                    physics: NeverScrollableScrollPhysics(),
+                                    shrinkWrap: true,
+                                    gridDelegate:
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                            crossAxisSpacing: 2.w,
+                                            mainAxisSpacing: 2.w,
+                                            crossAxisCount:
+                                                attachments.length < 3
+                                                    ? attachments.length
+                                                    : 3),
+                                    itemCount: attachments.length,
+                                    itemBuilder: (_, index) {
+                                      return attachments[index]
+                                              .mimetype
+                                              .contains('application')
+                                          ? FilePreview(
+                                              pictureEntity:
+                                                  attachments[index])
+                                          : GestureDetector(
+                                              onTap: () {
+                                                Get.to(() => GalleryWidget(
+                                                    urlImages: chatRoomController.imagesLinks,
+                                                    index: chatRoomController.imagesLinks.indexOf(
+                                                        attachments[index]
+                                                            .url)));
+                                              },
+                                              child: Container(
+                                                  height: 30,
+                                                  width: Get.size.width,
+                                                  decoration: BoxDecoration(
+                                                      image: DecorationImage(
+                                                    image:
+                                                        CachedNetworkImageProvider(
+                                                            attachments[index]
+                                                                .url),
+                                                    fit: BoxFit.cover,
+                                                  ))),
+                                            );
+                                    })
                                 : const SizedBox(),
                             CommonText(
                               text: text,

@@ -9,12 +9,13 @@ import '../../../../common/widgets/round_cached_image.dart';
 import '../../../../constants/resources/colors.dart';
 
 class ChatRoomBar extends StatelessWidget {
-  const ChatRoomBar({Key? key, required this.profileImgUrl, required this.roomName, required this.additionalInfoText, this.backOnTap, this.notificationsNumber = 0}) : super(key: key);
+  const ChatRoomBar({Key? key, required this.profileImgUrl, required this.roomName, required this.additionalInfoText, this.backOnTap, this.notificationsNumber = 0, this.photoOnTap}) : super(key: key);
   final String profileImgUrl;
   final String roomName;
   final String additionalInfoText;
   final Function()? backOnTap;
   final int notificationsNumber;
+  final Function()? photoOnTap;
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +69,7 @@ class ChatRoomBar extends StatelessWidget {
         Positioned(
             top: 8.h,
             right: 8.w,
-            child: RoundedCachedImage(imgUrl: profileImgUrl))
+            child: GestureDetector(onTap: photoOnTap, child: RoundedCachedImage(imgUrl: profileImgUrl)))
       ],
     );
   }

@@ -15,6 +15,7 @@ import '../../../core/interceptors/dio_request_interceptor.dart';
 
 abstract class AttachmentsDataSource {
   Future<List<PictureApiDto>> uploadFiles(List<File> files);
+  Future<PictureApiDto> getAttachment(String id);
 }
 
 class AttachmentsDataSourceImpl implements AttachmentsDataSource {
@@ -41,5 +42,13 @@ class AttachmentsDataSourceImpl implements AttachmentsDataSource {
         response.data['data'].map((model) => PictureApiDto.fromJson(model)));
 
     return listApiPictures;
+  }
+
+  @override
+  Future<PictureApiDto> getAttachment(String id) async{
+    data_injection.sl<RequestInterceptor>().setHandleErrors(false);
+    final response = await dioClient.get(APIConfigURL.baseUrl + 'attachments/$id', options: Options(headers: {'x-api-key': APIConfigURL.xApiKey}));
+    PictureApiDto pictureApiDto = PictureApiDto.fromJson(response.data['data']);
+    return pictureApiDto;
   }
 }

@@ -1,3 +1,7 @@
+import 'package:chat/modules/main/add_members/bindings/add_members_binding.dart';
+import 'package:chat/modules/main/add_members/views/add_members_screen.dart';
+import 'package:chat/modules/main/group_info/bindings/group_info_binding.dart';
+import 'package:chat/modules/main/group_info/views/group_info_screen.dart';
 import 'package:chat/modules/main/new_group/group_initial_settings/bindings/group_initial_settings_binding.dart';
 import 'package:chat/modules/main/new_group/group_initial_settings/views/group_initial_settings_screen.dart';
 import 'package:chat/modules/main/new_group/group_members/bindings/group_members_binding.dart';
@@ -28,6 +32,7 @@ class AppPages {
   static const ROOM = Routes.ROOM;
   static const NEWCONVERSATION = Routes.NEWCONVERSATION;
   static const GROUPMEMBERS = Routes.GROUPMEMBERS;
+  static const ADDMEMBERS = Routes.ADDMEMBERS;
   static final routes = [
     GetPage(
       name: '/',
@@ -41,7 +46,9 @@ class AppPages {
         GetPage(name: _Paths.ROOM, page: () => ChatRoomScreen(), bindings: [ChatRoomBinding()]),
         GetPage(name: _Paths.NEWCONVERSATION, page: () => NewConversationScreen(), bindings: [NewConversationBinding()]),
         GetPage(name: _Paths.GROUPINITIALSETTINGS, page: () => GroupInitialSettingsScreen(), bindings: [GroupInitialSettingsBinding()]),
-        GetPage(name: _Paths.GROUPMEMBERS, page: () => GroupMembersScreen(), bindings: [GroupMembersBinding()])
+        GetPage(name: _Paths.GROUPMEMBERS, page: () => GroupMembersScreen(), bindings: [GroupMembersBinding()]),
+        GetPage(name: _Paths.GROUPINFO, page: () => GroupInfoScreen(), bindings: [GroupInfoBinding()]),
+        GetPage(name: _Paths.ADDMEMBERS, page: () => AddMembersScreen(), bindings: [AddMembersBinding()])
       ],
     ),
   ];

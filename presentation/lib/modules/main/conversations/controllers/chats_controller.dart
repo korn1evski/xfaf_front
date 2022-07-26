@@ -4,6 +4,7 @@ import 'package:chat/constants/app_constants.dart';
 import 'package:chat/constants/hard_coded.dart';
 import 'package:chat/generated/locale_keys.loc.dart';
 import 'package:data/modules/chat/remote/conversations/models/mappers/conversations_mapper.dart';
+import 'package:domain/modules/attachments/usecases/get_attachment_use_case.dart';
 import 'package:domain/modules/chat/conversations/entities/index.dart';
 import 'package:domain/modules/chat/conversations/usecases/delete_conversation_member_usecase.dart';
 import 'package:domain/modules/chat/conversations/usecases/delete_conversation_usecase.dart';
@@ -28,6 +29,7 @@ class ChatsController extends GetxController {
   final GetConversationsUseCase getConversationsUseCase;
   final GetConversationsControllerUseCase getConversationsControllerUseCase;
   final GetMessagesControllerUseCase getMessagesControllerUseCase;
+  final GetAttachmentUseCase getAttachmentUseCase;
   final DeleteConversationMemberUseCase deleteConversationMemberUseCase;
   final DeleteConversationUseCase deleteConversationUseCase;
   late StreamController<MessageEntity> messagesController;
@@ -38,12 +40,14 @@ class ChatsController extends GetxController {
   late StreamSubscription<ConversationEventEntity> conversationsSubscription;
   int currentPage = 1;
 
-  ChatsController({required this.getCurrentUserSessionUseCase,
-    required this.getConversationsUseCase,
-    required this.getConversationsControllerUseCase,
-    required this.getMessagesControllerUseCase,
-    required this.deleteConversationUseCase,
-    required this.deleteConversationMemberUseCase});
+  ChatsController(
+      {required this.getCurrentUserSessionUseCase,
+      required this.getConversationsUseCase,
+      required this.getConversationsControllerUseCase,
+      required this.getMessagesControllerUseCase,
+      required this.deleteConversationUseCase,
+      required this.deleteConversationMemberUseCase,
+      required this.getAttachmentUseCase});
 
   initialLoading() async {
     setIsLoading(isLoading);
@@ -65,19 +69,20 @@ class ChatsController extends GetxController {
     messagesSubscription = messagesStream.asBroadcastStream().listen((message) {
       ConversationEntity? temp;
       ConversationEntity? toRemove;
+      final String date = DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+          .format(DateTime.now().subtract(const Duration(hours: 3)));
       conversations.forEach((element) {
         if (element.id == message.conversation.id) {
           toRemove = element;
-          temp = element.copyWith(unread: element.unread + 1,
-              editedTimestamp: DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-                  .format(DateTime.now()));
+          temp = element.copyWith(
+              unread: element.unread + 1,
+              editedTimestamp: date, timestamp: date);
           if (temp!.message != null) {
             EmbedMessageEntity embedTemp = temp!.message!.copyWith(
                 content: message.content,
-                editedTimestamp: DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-                    .format(DateTime.now()),
-                timestamp: message.editedTimestamp);
-                temp = temp!.copyWith(message: embedTemp);
+                editedTimestamp: date,
+                timestamp: date);
+            temp = temp!.copyWith(message: embedTemp);
           } else {
             temp = temp!.copyWith(
                 message: EmbedMessageEntity(
@@ -86,12 +91,11 @@ class ChatsController extends GetxController {
                     content: message.content,
                     conversation: message.conversation.id,
                     isPoll: false,
-                    editedTimestamp: DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-                        .format(DateTime.now()),
+                    editedTimestamp: date,
                     owner: message.owner ?? HardCoded.profileEntityHard,
                     tag: message.tag,
                     type: message.type,
-                    timestamp: message.editedTimestamp));
+                    timestamp: date));
           }
         }
       });
@@ -103,20 +107,33 @@ class ChatsController extends GetxController {
 
     conversationsController = getConversationsControllerUseCase.call();
     conversationsStream = conversationsController.stream.asBroadcastStream();
-
-    conversationsSubscription = conversationsStream.listen((conversation) {
+    conversationsSubscription =
+        conversationsStream.listen((conversation) async {
+      closeRoomWhenWeAreDeleted(conversation, currentUserEntity!.id);
       if ((conversation.event == 'CONVERSATION_MEMBER_DELETE' &&
-          conversation.conversation.members[0].id ==
-              currentUserEntity!.id) ||
+              conversation.conversation.members[0].id ==
+                  currentUserEntity!.id) ||
           conversation.event == 'CONVERSATION_DELETE') {
         conversations.removeWhere(
-                (element) => element.id == conversation.conversation.id);
+            (element) => element.id == conversation.conversation.id);
       }
+          // || conversation.event =='CONVERSATION_MEMBER_UPDATE'
       if (conversation.event == 'CONVERSATION_CREATE') {
+        String conversationPicture = '';
+        if (conversation.conversation.picture != null) {
+          final attachmentResponse = await getAttachmentUseCase
+              .call(conversation.conversation.picture!);
+          attachmentResponse.fold((l) => print('Error getting attachment'),
+              (r) {
+            conversationPicture = r.url;
+          });
+        }
         conversations.insert(
             0,
             ConversationsMapper().conversationWebSocketDtoToConversationEntity(
-                conversation.conversation, LocaleKeys.theBeginningOfConversation.tr().capitalizeFirst!));
+                conversation.conversation,
+                LocaleKeys.theBeginningOfConversation.tr().capitalizeFirst!,
+                conversationPicture));
         conversations.refresh();
       }
     });
@@ -124,13 +141,13 @@ class ChatsController extends GetxController {
 
   deleteConversation(ConversationEntity conversationEntity) async {
     if (conversationEntity.owner.id == currentUserEntity!.id) {
-      showAreYouSure('Delete conversation',
-          LocaleKeys.areYouSureDeletingConversation.tr(), () async {
-            await deleteConversationUseCase(
-                DeleteConversationParams(
-                    conversationId: conversationEntity.id));
-            Get.back();
-          });
+      showAreYouSure(
+          'Delete conversation', LocaleKeys.areYouSureDeletingConversation.tr(),
+          () async {
+        await deleteConversationUseCase(
+            DeleteConversationParams(conversationId: conversationEntity.id));
+        Get.back();
+      });
     } else {
       await deleteConversationMemberUseCase(DeleteConversationMemberParams(
           conversationId: conversationEntity.id,

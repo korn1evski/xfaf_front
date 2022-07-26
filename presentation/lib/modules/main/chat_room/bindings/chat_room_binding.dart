@@ -6,8 +6,10 @@ class ChatRoomBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut(() => ChatRoomController(
-        getMessagesUseCase: domain_injection.sl.call(), sendMessageUseCase: domain_injection.sl.call(),
-    getMessagesControllerUseCase: domain_injection.sl.call()
-    ));
+        getMessagesUseCase: domain_injection.sl.call(),
+        sendMessageUseCase: domain_injection.sl.call(),
+        getMessagesControllerUseCase: domain_injection.sl.call(),
+        uploadFilesUseCase: domain_injection.sl.call(),
+        setSharedStringUseCase: domain_injection.sl.call()));
   }
 }
