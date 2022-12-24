@@ -10,6 +10,13 @@ class AppColors {
     return mainController.isDarkMode.value ? Color(0xFF000000) : Color(0xFFFFFFFF);
   }
 
+  static final mColor = Color(0xFFC8507D);
+
+  static Color get grey400 {
+    MainController mainController = Get.find();
+    return mainController.isDarkMode.value ? Color(0xFF6E7C87) : Color(0xFF6E7C87);
+  }
+
   static Color get backColor2 {
     MainController mainController = Get.find();
     return mainController.isDarkMode.value ? Color(0xFF101418) : Color(0xFFFFFFFF);

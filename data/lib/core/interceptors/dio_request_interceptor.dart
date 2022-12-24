@@ -13,7 +13,7 @@ class RequestInterceptor extends Interceptor {
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    options.headers['app-id'] = '62227dcc75f47d902a9f0f34';
+    // options.headers['app-id'] = '62227dcc75f47d902a9f0f34';
     handler.next(options);
   }
 

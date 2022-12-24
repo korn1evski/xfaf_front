@@ -37,11 +37,13 @@ import 'package:domain/modules/websocket/usecases/get_conversations_controller_u
 import 'package:domain/modules/websocket/usecases/get_messages_controller_usecase.dart';
 import 'package:domain/modules/websocket/usecases/start_websocket_usecase.dart';
 import 'package:get_it/get_it.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 GetIt sl = GetIt.instance;
 
 Future<void> init() async {
   final domainDi = GetIt.instance;
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
 
   // User UseCases
   domainDi.registerLazySingleton<GetUsersUseCase>(() => GetUsersUseCase(repository: domainDi<UserRepository>()));
@@ -89,4 +91,5 @@ Future<void> init() async {
   domainDi.registerLazySingleton<DownloadFileUseCase>(() => DownloadFileUseCase(filesRepository: domainDi<FilesRepository>()));
   domainDi.registerLazySingleton<SaveDownloadedFileUseCase>(() => SaveDownloadedFileUseCase(filesRepository: domainDi<FilesRepository>()));
   domainDi.registerLazySingleton<DeleteRoomMemberUseCase>(() => DeleteRoomMemberUseCase(roomRepository: domainDi<RoomRepository>()));
+
 }

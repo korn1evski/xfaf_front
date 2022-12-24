@@ -70,7 +70,7 @@ class RoundedCachedImage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(size),
                 image: DecorationImage(
                     image: AssetImage(
-                      'res/images/person.png',
+                      'res/images/orphanage-after.jpg',
                     ),
                     fit: BoxFit.cover)),
           ),

@@ -1,5 +1,7 @@
+import 'package:chat/common/widgets/common_text.dart';
 import 'package:chat/constants/app_constants.dart';
 import 'package:chat/generated/locale_keys.loc.dart';
+import 'package:chat/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart' hide Trans;
@@ -44,7 +46,7 @@ class LoginPageState extends BasePageState<LoginPage> {
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(
                       height: 16.h,
@@ -77,6 +79,11 @@ class LoginPageState extends BasePageState<LoginPage> {
                       backColor: AppColors.blueWhiteBack,
                       textColor: AppColors.blueWhiteText,
                     ),
+                    SizedBox(height: 300.h,),
+                    GestureDetector(onTap: (){
+                      loginController.clear();
+                      Get.toNamed(Routes.REGISTER);
+                    },child: CommonText(text: 'Unregistered yet?', size: 14, color: AppColors.blueWhiteBack,))
                   ],
                 ),
               )

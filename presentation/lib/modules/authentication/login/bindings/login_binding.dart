@@ -5,6 +5,6 @@ import 'package:domain/di/domain_injection_container.dart' as domain_injection;
 class LoginBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => LoginController(loginUseCase: domain_injection.sl.call(), getProfileUseCase: domain_injection.sl.call()));
+    Get.lazyPut(() => LoginController());
   }
 }

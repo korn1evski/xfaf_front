@@ -14,6 +14,12 @@ abstract class Routes {
   static const GROUPMEMBERS = _Paths.GROUPMEMBERS;
   static const GROUPINFO = _Paths.GROUPINFO;
   static const ADDMEMBERS = _Paths.ADDMEMBERS;
+  static const FEED = _Paths.FEED;
+  static const FIRST = _Paths.FIRST;
+  static const REGISTER = _Paths.REGISTER;
+  static const DETAILS = _Paths.DETAILS;
+  static const PROFILE = _Paths.PROFILE;
+  static const ADDCHILD = _Paths.ADDCHILD;
   Routes._();
   static String LOGIN_THEN(String afterSuccessfulLogin) =>
       '$LOGIN?then=${Uri.encodeQueryComponent(afterSuccessfulLogin)}';
@@ -30,4 +36,10 @@ abstract class _Paths {
   static const GROUPMEMBERS = '/groupMembers';
   static const GROUPINFO = '/groupInfo';
   static const ADDMEMBERS = '/addMembers';
+  static const FEED = '/feed';
+  static const FIRST = '/first';
+  static const REGISTER = '/register';
+  static const DETAILS = '/details';
+  static const PROFILE = '/profile';
+  static const ADDCHILD = '/addChild';
 }

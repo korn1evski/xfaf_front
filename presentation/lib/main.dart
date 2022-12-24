@@ -1,3 +1,5 @@
+import 'package:chat/routes/app_pages.dart';
+import 'package:chat/utils/localization/locale_loader.dart';
 import 'package:data/di/data_injection_container.dart' as data_injection;
 import 'package:domain/core/errors/failure.dart';
 import 'package:domain/di/domain_injection_container.dart' as domain_injection;
@@ -8,19 +10,18 @@ import 'package:flutter/services.dart';
 import 'package:flutter_libphonenumber/flutter_libphonenumber.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:chat/controllers/main_controller.dart';
-import 'package:chat/modules/main/menu/views/menu_page.dart';
-import 'package:chat/modules/root/controllers/root_controller.dart';
-import 'package:chat/permanent_binding.dart';
-import 'package:chat/routes/app_pages.dart';
-import 'package:chat/utils/localization/locale_loader.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 import 'constants/resources/help_functions.dart';
+import 'controllers/main_controller.dart';
 import 'initial_binding.dart';
+import 'modules/root/controllers/root_controller.dart';
+import 'permanent_binding.dart';
+
+late SharedPreferences sharedPreferences;
 
 Future<void> main() async {
   await FlutterLibphonenumber().init();
-
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((_) async {
@@ -31,6 +32,7 @@ Future<void> main() async {
       }
     });
     await PermanentBinding().dependencies(); //
+    sharedPreferences = await SharedPreferences.getInstance();
     RootController controller = Get.find();
     await controller.getCurrentSession();
 
@@ -60,12 +62,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   @override
   void initState() {
-    super.initState();
     Get.put(MainController());
     RootController controller = Get.find();
-    isLogged = controller.currentUserEntity.value != null;
-
-    isLogged ? domain_injection.sl<StartWebSocketUseCase>().call() : null;
+    isLogged = sharedPreferences.getString('access') != null ? true : false;
 
     WidgetsBinding.instance.addObserver(this);
     final Brightness? brightness = WidgetsBinding.instance.window.platformBrightness;
@@ -73,6 +72,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       MainController mainController = Get.find();
       mainController.changeThemeMode(brightness);
     }
+    super.initState();
+
   }
 
   @override
@@ -96,22 +97,11 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
                   initialBinding: InitialBinding(),
                   title: "Application",
                   getPages: AppPages.routes,
-                  // theme: ThemeData(
-                  //   // Define the default brightness and colors.
-                  //   brightness: Brightness.light,
-                  //   primaryColor: Colors.lightBlue[800],
-                  //
-                  //   // Define the default font family.
-                  //   fontFamily: 'INTER',
-                  //
-                  //   // Define the default `TextTheme`. Use this to specify the default
-                  //   // text styling for headlines, titles, bodies of text, and more.
-                  //   textTheme: const TextTheme(),
-                  // ),
-                  initialRoute: isLogged ? AppPages.MENU : AppPages.LOGIN),
+                initialRoute: isLogged ? AppPages.FEED : AppPages.LOGIN,
+              )
+                  // initialRoute: isLogged ? AppPages.MENU : AppPages.LOGIN),
             ),
           );
-          // isLogged ? AppPages.MENU : AppPages.WELCOME
         });
   }
 

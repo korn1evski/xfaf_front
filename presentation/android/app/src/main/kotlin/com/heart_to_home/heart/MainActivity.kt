@@ -1,4 +1,4 @@
-package com.chat.chat
+package com.heart_to_home.heart
 
 import io.flutter.embedding.android.FlutterActivity
 

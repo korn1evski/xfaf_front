@@ -118,7 +118,7 @@ class ChatsController extends GetxController {
             (element) => element.id == conversation.conversation.id);
       }
           // || conversation.event =='CONVERSATION_MEMBER_UPDATE'
-      if (conversation.event == 'CONVERSATION_CREATE') {
+      if (conversation.event == 'CONVERSATION_CREATE' ||  conversation.event =='CONVERSATION_MEMBER_UPDATE') {
         String conversationPicture = '';
         if (conversation.conversation.picture != null) {
           final attachmentResponse = await getAttachmentUseCase
@@ -128,13 +128,21 @@ class ChatsController extends GetxController {
             conversationPicture = r.url;
           });
         }
-        conversations.insert(
-            0,
-            ConversationsMapper().conversationWebSocketDtoToConversationEntity(
-                conversation.conversation,
-                LocaleKeys.theBeginningOfConversation.tr().capitalizeFirst!,
-                conversationPicture));
-        conversations.refresh();
+        bool checkIfContains = false;
+        conversations.forEach((element) {
+          if(element.id == conversation.conversation.id){
+            checkIfContains = true;
+          }
+        });
+        if(!checkIfContains){
+          conversations.insert(
+              0,
+              ConversationsMapper().conversationWebSocketDtoToConversationEntity(
+                  conversation.conversation,
+                  LocaleKeys.theBeginningOfConversation.tr().capitalizeFirst!,
+                  conversationPicture));
+          conversations.refresh();
+        }
       }
     });
   }

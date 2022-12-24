@@ -23,6 +23,7 @@ class PictureApiDto with _$PictureApiDto {
   factory PictureApiDto.fromJson(Map<String, dynamic> json) => _$PictureApiDtoFromJson(json);
 }
 
+
 class Attributes {
   Attributes({
     this.width,

@@ -39,12 +39,16 @@ PODS:
   - Flutter (1.0.0)
   - flutter_libphonenumber (0.0.1):
     - Flutter
-    - PhoneNumberKit/PhoneNumberKitCore (~> 3.3.3)
+    - PhoneNumberKit/PhoneNumberKitCore (= 3.3.4)
   - flutter_secure_storage (3.3.1):
     - Flutter
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
+  - geocoding (1.0.5):
+    - Flutter
+  - geolocator_apple (1.2.0):
+    - Flutter
   - image_picker_ios (0.0.1):
     - Flutter
   - open_file (0.0.1):
@@ -87,6 +91,8 @@ DEPENDENCIES:
   - Flutter (from `Flutter`)
   - flutter_libphonenumber (from `.symlinks/plugins/flutter_libphonenumber/ios`)
   - flutter_secure_storage (from `.symlinks/plugins/flutter_secure_storage/ios`)
+  - geocoding (from `.symlinks/plugins/geocoding/ios`)
+  - geolocator_apple (from `.symlinks/plugins/geolocator_apple/ios`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
   - open_file (from `.symlinks/plugins/open_file/ios`)
   - path_provider_ios (from `.symlinks/plugins/path_provider_ios/ios`)
@@ -116,6 +122,10 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_libphonenumber/ios"
   flutter_secure_storage:
     :path: ".symlinks/plugins/flutter_secure_storage/ios"
+  geocoding:
+    :path: ".symlinks/plugins/geocoding/ios"
+  geolocator_apple:
+    :path: ".symlinks/plugins/geolocator_apple/ios"
   image_picker_ios:
     :path: ".symlinks/plugins/image_picker_ios/ios"
   open_file:
@@ -135,9 +145,11 @@ SPEC CHECKSUMS:
   DKPhotoGallery: fdfad5125a9fdda9cc57df834d49df790dbb4179
   file_picker: 817ab1d8cd2da9d2da412a417162deee3500fc95
   Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
-  flutter_libphonenumber: 6a23afdf063b34d1e53e6dbd6c6bc905d18e8e46
+  flutter_libphonenumber: 8e7a8f974fda0f5915cf0af846879adf90b08f51
   flutter_secure_storage: 7953c38a04c3fdbb00571bcd87d8e3b5ceb9daec
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  geocoding: 32cfcdb16d38d907caaba65e2e42ad10d38bee58
+  geolocator_apple: cc556e6844d508c95df1e87e3ea6fa4e58c50401
   image_picker_ios: b786a5dcf033a8336a657191401bfdf12017dabb
   open_file: 02eb5cb6b21264bd3a696876f5afbfb7ca4f4b7d
   path_provider_ios: 14f3d2fd28c4fdb42f44e0f751d12861c43cee02
